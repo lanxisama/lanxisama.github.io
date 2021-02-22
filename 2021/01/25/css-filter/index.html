@@ -11,15 +11,15 @@
   <link rel="dns-prefetch" href="https://lanxisama.github.io">
   <title>css filter属性 | 桜抄的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="filter: 1234567891011121314151617181920212223242526&#x2F;* URL to SVG filter *&#x2F;filter: url(&quot;filters.svg#filter-id&quot;);&#x2F;* &lt;filter-function&gt; values *&#x2F;filter: blur(5px);   &#x2F;&#x2F;高斯模糊filter: brightne">
+  <meta name="description" content="filter:">
 <meta property="og:type" content="article">
 <meta property="og:title" content="css filter属性">
 <meta property="og:url" content="https://lanxisama.github.io/2021/01/25/css-filter/index.html">
 <meta property="og:site_name" content="桜抄的博客">
-<meta property="og:description" content="filter: 1234567891011121314151617181920212223242526&#x2F;* URL to SVG filter *&#x2F;filter: url(&quot;filters.svg#filter-id&quot;);&#x2F;* &lt;filter-function&gt; values *&#x2F;filter: blur(5px);   &#x2F;&#x2F;高斯模糊filter: brightne">
+<meta property="og:description" content="filter:">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-01-25T12:46:17.373Z">
-<meta property="article:modified_time" content="2021-02-03T05:10:53.477Z">
+<meta property="article:modified_time" content="2021-02-22T12:01:09.929Z">
 <meta property="article:author" content="桜抄">
 <meta property="article:tag" content="css">
 <meta name="twitter:card" content="summary">
@@ -187,6 +187,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>filter:</p>
+<a id="more"></a>
+
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* URL to SVG filter */</span></span><br><span class="line">filter: url(<span class="string">&quot;filters.svg#filter-id&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* &lt;filter-function&gt; values */</span></span><br><span class="line">filter: blur(5px);   <span class="comment">//高斯模糊</span></span><br><span class="line">filter: brightness(<span class="number">0.4</span>);  <span class="comment">//亮度 0%-100% 超过100%时（1，2，3）数值越高越亮</span></span><br><span class="line">filter: contrast(<span class="number">200</span>%); <span class="comment">//对比度 数值范围同上</span></span><br><span class="line">filter: drop-shadow(16px 16px 20px blue); <span class="comment">//</span></span><br><span class="line">filter: grayscale(<span class="number">50</span>%);   <span class="comment">//灰度  0%--100%</span></span><br><span class="line">filter: hue-rotate(90deg);  <span class="comment">//色相旋转 0-360deg 可以超过360 没必要一个环</span></span><br><span class="line">filter: invert(<span class="number">75</span>%); <span class="comment">//反转输入 0%--100%</span></span><br><span class="line">filter: opacity(<span class="number">25</span>%);  <span class="comment">//透明度</span></span><br><span class="line">filter: saturate(<span class="number">30</span>%); <span class="comment">//饱和度</span></span><br><span class="line">filter: sepia(<span class="number">60</span>%); <span class="comment">//图像转成深褐色  老照片效果</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* Multiple filters */</span></span><br><span class="line">filter: contrast(<span class="number">175</span>%) brightness(<span class="number">3</span>%);  <span class="comment">//复合写法</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* Use no filter */</span></span><br><span class="line">filter: none;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Global values */</span></span><br><span class="line">filter: inherit;</span><br><span class="line">filter: initial;</span><br><span class="line">filter: unset;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 
@@ -279,7 +281,7 @@
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          (no title)
+          缓存策略
         
       </div>
     </a>

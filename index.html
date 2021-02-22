@@ -338,75 +338,26 @@
     <article id="post-pwa/pwa" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/01/26/pwa/pwa/">缓存策略</a>
+    </h1>
+  
+
+        
+        <a href="/2021/01/26/pwa/pwa/" class="archive-article-date">
+  	<time datetime="2021-01-26T04:14:11.261Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-26</time>
+</a>
+        
+      </header>
+
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <hr>
-<hr>
-<p>使用的JavaScript API ＃<br>使用诸如navigator.hardwareConcurrency，navigator.deviceMemory和navigator.connection之类的JavaScript API ，您可以分别获取有关设备CPU，内存和网络状态的信息。</p>
-<p>navigator.serviceWorker.oncontrollerchange</p>
-<pre><code>监听控制权变化？？用来监听sw更新？</code></pre>
-<p>navigator.online用来判断当前是否处于联网状态  </p>
-<p>缓存策略</p>
-<p>对不同资源使用不同缓存策略</p>
-<p>cache only:</p>
-<pre><code>所有资源都直接从缓存中获取返回，如果缓存中找不到则请求将失败。该模式假定资源之前已经被缓存，可能在Install期间就做了缓存，适用于静态资源</code></pre>
-<p>network only</p>
-<pre><code>只从网络返回，适用于前端用户行为日志打点之类的请求 坚决不缓存的 因为缓存可能影响时效性</code></pre>
-<p>cache falling back to network</p>
-<p> 先cache 失败了再从network</p>
-<p>network falling back to cache</p>
-<p>   network失败了在从cache获取 适用于频繁更新的内容</p>
-<p>cache network race</p>
-<pre><code>同时从cache和network获取，取最快响应的内容返回，应用场景较少。</code></pre>
-<p>cache ，then next</p>
-<p> 优先从cache，并同时从network获取最新内容，如果内容更新比较新，则更新缓存，并更新页面内容。UX实现难度大</p>
-<p>generic fallback</p>
-<p>优先从cache获取，如果cache没有则从网络获取，如果网络也不可用就返回cache中默认内容，适用于默认图片之类的场景</p>
-<p>注意事项</p>
-<pre><code>    避免http缓存service worker文件，另外浏览器对service worker文件最多只能缓存24h(超过时间无论如何都会从网络获取)(针对sw的响应头cache-control设置成no-cache）</code></pre>
-<p>避免缓存跨域资源：一种常见的做法是只缓存满足如下条件的结果：<br>响应状态码是200；避免缓存304，404，50x的结果<br>相应类型为basic或者cors即：只缓存同源，或者正确的跨域请求结果；避免缓存响应错误或不正确的跨域请求响应<br>3 注意存储空间</p>
-<pre><code>chrome 逐出策略是LRU
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-appshell概念
-
-导航栏 底部 内容 app的一个基础样子</code></pre>
-<p>APP SHELL 首屏加载优化 提前加载出应用的壳</p>
-<p>可以将appshell的内容写在入口文件中 包括nav footer等 。。。</p>
-<p>sw缓存app shell</p>
-<p>可以将index.html 入口文件 样式图表等静态资源加入到缓存中</p>
-<p>skeleton（骨架） 与appshell类似 </p>
-<p>app.js中</p>
-<pre><code>//显示骨架
-
-showSkeleton()</code></pre>
-<p>//获取数据</p>
-<p>await getData();</p>
-<p>//隐藏skeleton</p>
-<p>hideSkeleton()</p>
-<p>//渲染页面内容</p>
-<p>renderData()</p>
-<p>相关链接<br><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Cache">https://developer.mozilla.org/zh-CN/docs/Web/API/Cache</a><br><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/ExtendableEvent/waitUntil">https://developer.mozilla.org/zh-CN/docs/Web/API/ExtendableEvent/waitUntil</a></p>
-<p><a target="_blank" rel="noopener" href="https://developers.google.com/web/fundamentals/primers/service-workers/lifecycle?hl=zh-cn">https://developers.google.com/web/fundamentals/primers/service-workers/lifecycle?hl=zh-cn</a></p>
-<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903656811134984">https://juejin.cn/post/6844903656811134984</a></p>
-
+        <p>使用的JavaScript API ＃<br>使用诸如navigator.hardwareConcurrency，navigator.deviceMemory和navigator.connection之类的JavaScript API ，您可以分别获取有关设备CPU，内存和网络状态的信息。</p>
+        
       
 
       
@@ -415,6 +366,25 @@ showSkeleton()</code></pre>
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">serviceWorker</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">PWA</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -472,11 +442,7 @@ showSkeleton()</code></pre>
     <div class="article-entry" itemprop="articleBody">
       
         <p>filter:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* URL to SVG filter */</span></span><br><span class="line">filter: url(<span class="string">&quot;filters.svg#filter-id&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* &lt;filter-function&gt; values */</span></span><br><span class="line">filter: blur(5px);   <span class="comment">//高斯模糊</span></span><br><span class="line">filter: brightness(<span class="number">0.4</span>);  <span class="comment">//亮度 0%-100% 超过100%时（1，2，3）数值越高越亮</span></span><br><span class="line">filter: contrast(<span class="number">200</span>%); <span class="comment">//对比度 数值范围同上</span></span><br><span class="line">filter: drop-shadow(16px 16px 20px blue); <span class="comment">//</span></span><br><span class="line">filter: grayscale(<span class="number">50</span>%);   <span class="comment">//灰度  0%--100%</span></span><br><span class="line">filter: hue-rotate(90deg);  <span class="comment">//色相旋转 0-360deg 可以超过360 没必要一个环</span></span><br><span class="line">filter: invert(<span class="number">75</span>%); <span class="comment">//反转输入 0%--100%</span></span><br><span class="line">filter: opacity(<span class="number">25</span>%);  <span class="comment">//透明度</span></span><br><span class="line">filter: saturate(<span class="number">30</span>%); <span class="comment">//饱和度</span></span><br><span class="line">filter: sepia(<span class="number">60</span>%); <span class="comment">//图像转成深褐色  老照片效果</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* Multiple filters */</span></span><br><span class="line">filter: contrast(<span class="number">175</span>%) brightness(<span class="number">3</span>%);  <span class="comment">//复合写法</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* Use no filter */</span></span><br><span class="line">filter: none;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Global values */</span></span><br><span class="line">filter: inherit;</span><br><span class="line">filter: initial;</span><br><span class="line">filter: unset;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-<h2 id="为三角形添加阴影"><a href="#为三角形添加阴影" class="headerlink" title="为三角形添加阴影"></a>为三角形添加阴影</h2><p>利用drop-shadow 可以根据alpha通道添加阴影</p>
-
+        
       
 
       
@@ -552,7 +518,7 @@ showSkeleton()</code></pre>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>我日你先人</p>
+        <p>我日你先人sdadsadad</p>
 
       
 
