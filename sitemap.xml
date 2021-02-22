@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>https://lanxisama.github.io/2021/01/24/photo/photo/</loc>
+    
+    <lastmod>2021-02-22</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://lanxisama.github.io/2021/01/24/chromeExtension/chrome-extension-screen-record/</loc>
+    
+    <lastmod>2021-02-03</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://lanxisama.github.io/2021/02/02/pwa/workerbox-test/</loc>
+    
+    <lastmod>2021-02-03</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://lanxisama.github.io/2021/01/27/pwa/what-is-service-work/</loc>
+    
+    <lastmod>2021-02-03</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://lanxisama.github.io/2021/01/26/pwa/pwa/</loc>
+    
+    <lastmod>2021-02-03</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://lanxisama.github.io/2021/01/23/test-markdown/hello-world/</loc>
+    
+    <lastmod>2021-02-03</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://lanxisama.github.io/2021/01/23/test-markdown/first-blog/</loc>
+    
+    <lastmod>2021-02-03</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://lanxisama.github.io/2021/01/24/translate/how-to-build-an-html-calculation/</loc>
+    
+    <lastmod>2021-02-03</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://lanxisama.github.io/2021/01/25/css-filter/</loc>
+    
+    <lastmod>2021-02-03</lastmod>
+    
+  </url>
+  
+
+  <url>
+    <loc>https://lanxisama.github.io/</loc>
+    <lastmod>2021-02-22</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  
+  <url>
+    <loc>https://lanxisama.github.io/tags/Chrome-extension/</loc>
+    <lastmod>2021-02-22</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://lanxisama.github.io/tags/JavaScript/</loc>
+    <lastmod>2021-02-22</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://lanxisama.github.io/tags/css/</loc>
+    <lastmod>2021-02-22</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://lanxisama.github.io/tags/photo/</loc>
+    <lastmod>2021-02-22</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://lanxisama.github.io/tags/serviceWorker/</loc>
+    <lastmod>2021-02-22</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://lanxisama.github.io/tags/PWA/</loc>
+    <lastmod>2021-02-22</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://lanxisama.github.io/tags/translate/</loc>
+    <lastmod>2021-02-22</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+
+  
+</urlset>
