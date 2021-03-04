@@ -186,33 +186,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <a id="more"></a>
-
-<h2 id="学习到的"><a href="#学习到的" class="headerlink" title="学习到的"></a>学习到的</h2><ol>
-<li><p>AudioContext</p>
-</li>
-<li><p>视频下载</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// let recorderURL = window.URL.createObjectURL(recordedBlob);</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">saveRecorder</span>(<span class="params">recorderURL</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(recorderURL)&#123;</span><br><span class="line">        <span class="keyword">var</span> link = <span class="built_in">document</span>.createElement(<span class="string">&#x27;a&#x27;</span>);</span><br><span class="line">        link.style.display = <span class="string">&#x27;none&#x27;</span>;</span><br><span class="line">        link.href = recorderURL;</span><br><span class="line">        link.setAttribute(<span class="string">&#x27;download&#x27;</span>, <span class="string">&#x27;record.mp4&#x27;</span>);</span><br><span class="line">        <span class="built_in">document</span>.body.appendChild(link);</span><br><span class="line">        link.click();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//下载完成之后 将blob url释放 </span></span><br><span class="line"><span class="built_in">window</span>.URL.revokeObjectURL(recorderURL);</span><br></pre></td></tr></table></figure>
-<h2 id="遇到的坑"><a href="#遇到的坑" class="headerlink" title="遇到的坑"></a>遇到的坑</h2></li>
-<li><p><code>navigator.mediaDevices.getUserMedia</code> api获取设备权限<br></p>
-<p>  这个api为了安全性考虑，只可以在https或localhost下使   用，在http下使用 <code>navigator.mediaDevices</code> 是<code>undefined</code></p>
-</li>
-<li><p>chrome extension开发中，在background.js中利用<code>navigator.mediaDevices.enumerateDevices</code>获取设备列表时候会报错：<code>NotAllowedError: Failed due to shutdown</code><br></p>
-<p> 这是一个chrome的BUG如果想获取到设备列表，可以在<code>content-script</code>中获取道设备，并传递回<code>background.js</code>中使用。</p>
-<p> <code>content-script</code>必须在扩展名的上下文中运行，而不是当前网页。具体代码为<br></p>
- <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//detect.js</span></span><br><span class="line"><span class="keyword">const</span> iframe = <span class="built_in">document</span>.createElement(<span class="string">&quot;iframe&quot;</span>);</span><br><span class="line">iframe.style.display=<span class="string">&#x27;none&#x27;</span>;</span><br><span class="line">iframe.src = chrome.extension.getURL(<span class="string">&quot;./html/audio.html&quot;</span>) </span><br><span class="line">iframe.allow = <span class="string">&#x27;microphone&#x27;</span>; </span><br><span class="line"><span class="built_in">document</span>.body.appendChild(iframe);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p> <code>audio.html</code>是一个空页面，插入到当前页面中。并且在audio.html执行<code>audio.js</code>获取设备列表。</p>
-</li>
-</ol>
-<ol start="3">
-<li><p><code>chrome.runtime.lastError</code> 报错<br> 开发当中遇到这个报错的原因:<code>chrome extension</code>更新，但是旧页面中插入的detect.js与新扩展中不一致，导致发送消息失败。重新刷新页面即可。</p>
-</li>
-<li><p><code>&lt;video&gt;</code>标签进度条无法拖拽，视频第一次播放之后才可以正常拖拽<br> 此时<code>video.duration</code>值是<code>Infinity</code>所以才会无法拖动进度条，在第一次播放结束后获取到完整的视频信息，所以才可以正常拖动了。解决办法。</p>
- <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">    <span class="comment">//video加载元数据时触发</span></span><br><span class="line">    video.onloadedmetadata = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">//处理video第一次播放duration时Infinity的问题 导致不能拖动进度条 handle chrome&#x27;s bug</span></span><br><span class="line">    <span class="keyword">if</span> (video.duration === <span class="literal">Infinity</span>) &#123;</span><br><span class="line">    <span class="comment">// 设置一个比实际视频全长大的数值</span></span><br><span class="line">        video.currentTime = <span class="number">1e101</span>; <span class="comment">//触发 video.ontimeupdate</span></span><br><span class="line">        video.ontimeupdate = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="comment">//防止下面重新设置currentTime导致冲突</span></span><br><span class="line">            <span class="built_in">this</span>.ontimeupdate = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">            <span class="comment">//ontimeupdate是个宏任务 </span></span><br><span class="line">            <span class="comment">//第一次执行之后，在执行都只执行这个函数体的内容</span></span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//设置为0会有BUG，所以先设置成0</span></span><br><span class="line">            video.currentTime = <span class="number">0.1</span>; </span><br><span class="line">            video.currentTime = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p> <code>video.currentTime = 0.1; </code>原因，chrome有BUG，不能直接设置为0;</p>
-</li>
-</ol>
-
+        <p>screenLook 开发笔记</p>
+        
       
 
       
