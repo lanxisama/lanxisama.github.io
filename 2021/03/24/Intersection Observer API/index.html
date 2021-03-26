@@ -9,19 +9,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://lanxisama.github.io">
-  <title>桜抄的博客</title>
+  <title>IntersectionObserver API(交叉观察器) | 桜抄的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="IntersectionObserver API(交叉观察器) 用法12var io &#x3D; new IntersectionObserver(callback,option);&#x2F;&#x2F;callback是可见性变化时执行的回调函数，option是配置对象。 构造函数返回一个观察器实例。调用实例的observe方法可以指定观察哪个DOM节点。 123456789&#x2F;&#x2F;对#example进行观测 &#x2F;&#x2F;如果需要对">
+  <meta name="description" content="用法12var io &#x3D; new IntersectionObserver(callback,option);&#x2F;&#x2F;callback是可见性变化时执行的回调函数，option是配置对象。 构造函数返回一个观察器实例。调用实例的observe方法可以指定观察哪个DOM节点。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="桜抄的博客">
+<meta property="og:title" content="IntersectionObserver API(交叉观察器)">
 <meta property="og:url" content="https://lanxisama.github.io/2021/03/24/Intersection%20Observer%20API/index.html">
 <meta property="og:site_name" content="桜抄的博客">
-<meta property="og:description" content="IntersectionObserver API(交叉观察器) 用法12var io &#x3D; new IntersectionObserver(callback,option);&#x2F;&#x2F;callback是可见性变化时执行的回调函数，option是配置对象。 构造函数返回一个观察器实例。调用实例的observe方法可以指定观察哪个DOM节点。 123456789&#x2F;&#x2F;对#example进行观测 &#x2F;&#x2F;如果需要对">
+<meta property="og:description" content="用法12var io &#x3D; new IntersectionObserver(callback,option);&#x2F;&#x2F;callback是可见性变化时执行的回调函数，option是配置对象。 构造函数返回一个观察器实例。调用实例的observe方法可以指定观察哪个DOM节点。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-03-24T07:17:51.071Z">
-<meta property="article:modified_time" content="2021-03-24T08:28:07.368Z">
+<meta property="article:modified_time" content="2021-03-26T06:07:37.775Z">
 <meta property="article:author" content="桜抄">
-<meta property="article:tag" content="javascript,前端开发,front-end,css,html,桜抄">
+<meta property="article:tag" content="Javascript">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="桜抄的博客" type="application/atom+xml">
@@ -58,7 +58,7 @@
 		  <h1 class="header-author"><a href="/">桜抄</a></h1>
 		</hgroup>
 		
-		<p class="header-subtitle">我是你爹</p>
+		<p class="header-subtitle">记点东西</p>
 		
 
 		<nav class="header-menu">
@@ -120,7 +120,7 @@
 			  <h1 class="header-author js-header-author">桜抄</h1>
 			</hgroup>
 			
-			<p class="header-subtitle"><i class="icon icon-quo-left"></i>我是你爹<i class="icon icon-quo-right"></i></p>
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>记点东西<i class="icon icon-quo-right"></i></p>
 			
 			
 			
@@ -168,11 +168,28 @@
             <article id="post-Intersection Observer API" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      IntersectionObserver API(交叉观察器)
+    </h1>
+  
+
+        
+        <a href="/2021/03/24/Intersection%20Observer%20API/" class="archive-article-date">
+  	<time datetime="2021-03-24T07:17:51.071Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-24</time>
+</a>
+        
+      </header>
+
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <p>IntersectionObserver API(交叉观察器)</p>
-<h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> io = <span class="keyword">new</span> IntersectionObserver(callback,option);</span><br><span class="line"><span class="comment">//callback是可见性变化时执行的回调函数，option是配置对象。</span></span><br></pre></td></tr></table></figure>
+        <h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> io = <span class="keyword">new</span> IntersectionObserver(callback,option);</span><br><span class="line"><span class="comment">//callback是可见性变化时执行的回调函数，option是配置对象。</span></span><br></pre></td></tr></table></figure>
 <p>构造函数返回一个观察器实例。调用实例的observe方法可以指定观察哪个DOM节点。</p>
+<a id="more"></a>
+
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//对#example进行观测 </span></span><br><span class="line"><span class="comment">//如果需要对多个节点观察，则需要多次调用</span></span><br><span class="line">io.observe(<span class="built_in">document</span>.getElementById(<span class="string">&#x27;example&#x27;</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">//终止观测</span></span><br><span class="line">io.unobserve(element);</span><br><span class="line"></span><br><span class="line"><span class="comment">//关闭观察器</span></span><br><span class="line">io.disconnect();</span><br></pre></td></tr></table></figure>
 <h3 id="callback参数"><a href="#callback参数" class="headerlink" title="callback参数"></a>callback参数</h3><p>目标元素在可见性变化时，callback就会被调用。<br>entries是一个<code>IntersectionObserverEntry</code>数组，<br>在初始化时候entries数组长度与被观察元素个数一样，但之后io.observe执行时，entries表示进入可视区的元素</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> io = <span class="keyword">new</span> IntersectionObserver(</span><br><span class="line">  entries =&gt; &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(entries);</span><br><span class="line">  &#125;</span><br><span class="line">);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
@@ -185,6 +202,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Javascript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -406,11 +434,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">css</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+                <a href="javascript:void(0)" class="js-tag color1">axios</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Vue</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -431,18 +471,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">translate</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">axios</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Javascript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Vue</a>
               </li>
             
             <div class="clearfix"></div>
