@@ -71,7 +71,7 @@
 			</ul>
 		</nav>
 		<nav>
-			总文章数 10
+			总文章数 18
 		</nav>
 		<nav class="header-smart-menu">
     		
@@ -165,6 +165,568 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Intersection Observer API" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>IntersectionObserver API(交叉观察器)</p>
+<h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> io = <span class="keyword">new</span> IntersectionObserver(callback,option);</span><br><span class="line"><span class="comment">//callback是可见性变化时执行的回调函数，option是配置对象。</span></span><br></pre></td></tr></table></figure>
+<p>构造函数返回一个观察器实例。调用实例的observe方法可以指定观察哪个DOM节点。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//对#example进行观测 </span></span><br><span class="line"><span class="comment">//如果需要对多个节点观察，则需要多次调用</span></span><br><span class="line">io.observe(<span class="built_in">document</span>.getElementById(<span class="string">&#x27;example&#x27;</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">//终止观测</span></span><br><span class="line">io.unobserve(element);</span><br><span class="line"></span><br><span class="line"><span class="comment">//关闭观察器</span></span><br><span class="line">io.disconnect();</span><br></pre></td></tr></table></figure>
+<h3 id="callback参数"><a href="#callback参数" class="headerlink" title="callback参数"></a>callback参数</h3><p>目标元素在可见性变化时，callback就会被调用。<br>entries是一个<code>IntersectionObserverEntry</code>数组，<br>在初始化时候entries数组长度与被观察元素个数一样，但之后io.observe执行时，entries表示进入可视区的元素</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> io = <span class="keyword">new</span> IntersectionObserver(</span><br><span class="line">  entries =&gt; &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(entries);</span><br><span class="line">  &#125;</span><br><span class="line">);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="IntersectionObserverEntry对象"><a href="#IntersectionObserverEntry对象" class="headerlink" title="IntersectionObserverEntry对象"></a>IntersectionObserverEntry对象</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  time: <span class="number">3893.92</span>, <span class="comment">//可见性发生变化的事件，单位毫秒</span></span><br><span class="line">  rootBounds: ClientRect &#123; <span class="comment">//根元素的矩形区域信息，getBoundingClientRect()方法返回值，如果没有根元素，则返回null</span></span><br><span class="line">    bottom: <span class="number">920</span>,</span><br><span class="line">    height: <span class="number">1024</span>,</span><br><span class="line">    left: <span class="number">0</span>,</span><br><span class="line">    right: <span class="number">1024</span>,</span><br><span class="line">    top: <span class="number">0</span>,</span><br><span class="line">    width: <span class="number">920</span></span><br><span class="line">  &#125;,</span><br><span class="line">  boundingClientRect: ClientRect &#123; <span class="comment">//目标元素的矩形区域信息，内容同上。</span></span><br><span class="line">     <span class="comment">// ...</span></span><br><span class="line">  &#125;,</span><br><span class="line">  intersectionRect: ClientRect &#123; <span class="comment">//目标元素与视口（或根元素）的交叉区域的信息。</span></span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  &#125;,</span><br><span class="line">  intersectionRatio: <span class="number">0.54</span>, <span class="comment">//目标元素的可见比例，intersectionRect占boundingClientRect的比例，完全可见时候为1，完全不可见时候小于0。</span></span><br><span class="line">  target: element <span class="comment">//被观察的元素，是个DOM节点</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/24/Intersection%20Observer%20API/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+  
+    <article id="post-搞清clientHeight、offsetHeight、scrollHeight、offsetTop、scrollTop" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>clientHeight、offsetHeight、scrollHeight、offsetTop、scrollTop</p>
+
+      
+
+      
+    </div>
+
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/21/%E6%90%9E%E6%B8%85clientHeight%E3%80%81offsetHeight%E3%80%81scrollHeight%E3%80%81offsetTop%E3%80%81scrollTop/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+  
+    <article id="post-Vue/computed和watch" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// computed</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">computed</span>(<span class="params">fn</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> runner = effect(fn, &#123;</span><br><span class="line">        lazy: <span class="literal">true</span>,</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        <span class="keyword">get</span> <span class="title">value</span>() &#123;</span><br><span class="line">            <span class="comment">// 执行收集</span></span><br><span class="line">            <span class="keyword">return</span> runner();</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="keyword">set</span> <span class="title">value</span>(<span class="params">value</span>) &#123;&#125;,</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// watch</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">watch</span>(<span class="params">source, cb</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> getter = <span class="function">() =&gt;</span> &#123;&#125;;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> source === <span class="string">&quot;function&quot;</span>) &#123;</span><br><span class="line">        getter = source;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 收集信息</span></span><br><span class="line">    <span class="comment">//依赖的getter变化时 触发scheduler？</span></span><br><span class="line">    <span class="keyword">let</span> runner = effect(getter, &#123;</span><br><span class="line">        lazy: <span class="literal">true</span>,</span><br><span class="line">        scheduler: <span class="function">() =&gt;</span> &#123;</span><br><span class="line">            <span class="comment">// 执行回调</span></span><br><span class="line">            <span class="keyword">let</span> value = runner();</span><br><span class="line">            <span class="keyword">if</span> (value !== oldValue) &#123;</span><br><span class="line">                cb(oldValue, value);</span><br><span class="line">            &#125;</span><br><span class="line">            oldValue = value</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="comment">// 第一次执行收集</span></span><br><span class="line">    <span class="keyword">let</span> oldValue = runner();</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">effect</span>(<span class="params">fn, options = &#123;&#125;</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> effect = createEffect(fn, options);</span><br><span class="line">    <span class="keyword">if</span> (!options.lazy) &#123;</span><br><span class="line">        <span class="comment">// 执行收集</span></span><br><span class="line">        effect();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> effect;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> uid = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> effectStack = [];</span><br><span class="line"><span class="keyword">let</span> activeEffect = <span class="literal">null</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createEffect</span>(<span class="params">fn, options</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> effect = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="comment">//已经收集了</span></span><br><span class="line">        <span class="keyword">if</span> (!effectStack.includes(effect)) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                effectStack.push(effect);</span><br><span class="line">                activeEffect = effect;</span><br><span class="line">                <span class="comment">// 首次执行收集</span></span><br><span class="line">                <span class="keyword">return</span> fn();。</span><br><span class="line">            &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                <span class="comment">// 处理完成</span></span><br><span class="line">                effectStack.pop();</span><br><span class="line">                activeEffect = effectStack[effectStack.length - <span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    effect.raw = fn;</span><br><span class="line">    effect.id = uid++;</span><br><span class="line">    effect.options = options;</span><br><span class="line">    <span class="keyword">return</span> effect;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/20/Vue/computed%E5%92%8Cwatch/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+  
+    <article id="post-Vue/axios" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/19/Vue/axios/">axios</a>
+    </h1>
+  
+
+        
+        <a href="/2021/03/19/Vue/axios/" class="archive-article-date">
+  	<time datetime="2021-03-19T04:22:10.520Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-19</time>
+</a>
+        
+      </header>
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <a id="more"></a>
+
+<h2 id="Axios取消请求"><a href="#Axios取消请求" class="headerlink" title="Axios取消请求"></a>Axios取消请求</h2><blockquote>
+<p>重复的<code>get</code>请求，会导致页面多次更新发生抖动。<br>重复的<code>post</code>请求，会导致服务器端生成两次记录。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//方法一</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// CancelToken是一个构造函数，用于创建一个cancelToken实例对象</span></span><br><span class="line"><span class="comment">// cancelToken实例对象包含了一个promise属性，值为可以触发取消请求的一个promise</span></span><br><span class="line"><span class="keyword">const</span> CancelToken = axios.CancelToken;</span><br><span class="line"><span class="comment">// 执行source()得到的是一个包含了cancelToken对象和一个取消函数cancel()的对象</span></span><br><span class="line"><span class="comment">// 即 source = &#123;token: cancelToken对象, cancel: 取消函数&#125;</span></span><br><span class="line"><span class="keyword">const</span> source = CancelToken.source();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 在请求的配置中配置cancelToken，那么这个请求就有了可以取消请求的功能</span></span><br><span class="line">axios.get(<span class="string">&#x27;/user/12345&#x27;</span>, &#123;</span><br><span class="line">  cancelToken: source.token</span><br><span class="line">&#125;).catch(<span class="function"><span class="keyword">function</span>(<span class="params">thrown</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (axios.isCancel(thrown)) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;Request canceled&#x27;</span>, thrown.message);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">     <span class="comment">// 处理错误</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">axios.post(<span class="string">&#x27;/user/12345&#x27;</span>, &#123;</span><br><span class="line">  name: <span class="string">&#x27;new name&#x27;</span></span><br><span class="line">&#125;, &#123;</span><br><span class="line">  cancelToken: source.token</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 执行取消请求（message 参数是可选的）</span></span><br><span class="line">source.cancel(<span class="string">&#x27;Operation canceled by the user.&#x27;</span>);</span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"><span class="comment">//方法二</span></span><br><span class="line"></span><br><span class="line"> <span class="keyword">const</span> CancelToken = axios.CancelToken;</span><br><span class="line"><span class="keyword">let</span> cancel;</span><br><span class="line"></span><br><span class="line">axios.get(<span class="string">&#x27;/user/12345&#x27;</span>, &#123;</span><br><span class="line">  cancelToken: <span class="keyword">new</span> CancelToken(<span class="function"><span class="keyword">function</span> <span class="title">executor</span>(<span class="params">c</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// executor 函数接收一个 cancel 函数作为参数</span></span><br><span class="line">    <span class="comment">// 把cancel函数传递给外面，使得外面能控制执行取消请求</span></span><br><span class="line">    cancel = c;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// cancel the request</span></span><br><span class="line">cancel();</span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+<p>一般请求会进行封装，可以这样写</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">getCourseReq</span>(<span class="params">params, _this</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> axios.get(<span class="string">&#x27;/api/app/course&#x27;</span>,&#123;</span><br><span class="line">           params: params,</span><br><span class="line">           cancelToken: <span class="keyword">new</span> CancelToken(<span class="function"><span class="keyword">function</span> <span class="title">executor</span>(<span class="params">c</span>) </span>&#123;</span><br><span class="line">                <span class="comment">// 1. cancel函数赋值给cancelRequest属性</span></span><br><span class="line">                <span class="comment">// 从而可以通过cancelRequest执行取消请求的操作</span></span><br><span class="line">                _this.cancelRequest = c</span><br><span class="line">          &#125;) </span><br><span class="line">       &#125;)</span><br><span class="line">       .then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;&#125;)</span><br><span class="line">       .catch(<span class="function"><span class="params">err</span> =&gt;</span> &#123;&#125;)</span><br><span class="line">&#125;</span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+
+<h2 id="axios取消请求原理"><a href="#axios取消请求原理" class="headerlink" title="axios取消请求原理"></a>axios取消请求原理</h2><p>利用xmlhttprequest.abort()方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line"></span><br><span class="line">xhr.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(xhr.readyState === <span class="number">4</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(xhr.status === <span class="number">200</span>)&#123;</span><br><span class="line">            <span class="comment">//成功</span></span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="comment">//error</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">xhr.open(<span class="string">&#x27;get&#x27;</span>,<span class="string">&#x27;/api/id&#x27;</span>,<span class="literal">true</span>) <span class="comment">// 第三个参数选择 Ajax请求是异步处理还是同步处理,true是异步</span></span><br><span class="line">xhr.send() <span class="comment">// 发送请求</span></span><br><span class="line"></span><br><span class="line">xhr.abort() <span class="comment">//取消请求 调用这个方法以后，readyState属性变为4，status属性变为0。</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// axios/lib/adapters/xhr.js</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建XHR对象</span></span><br><span class="line"><span class="keyword">var</span> request = <span class="keyword">new</span> XMLHttpRequest()</span><br><span class="line"><span class="comment">// 模拟当前ajax请求</span></span><br><span class="line">request.open(config.method.toUpperCase(), buildURL(config.url, config.params, config.paramsSerializer), <span class="literal">true</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义取消请求promise对象的then函数</span></span><br><span class="line"><span class="keyword">if</span> (config.cancelToken) &#123; <span class="comment">// 如果配置了cancelToken属性</span></span><br><span class="line">    <span class="comment">// 当promise为完成态时，这个then函数执行，即执行取消请求</span></span><br><span class="line">    config.cancelToken.promise.then(<span class="function"><span class="keyword">function</span> <span class="title">onCanceled</span>(<span class="params">cancel</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!request) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 取消ajax请求</span></span><br><span class="line">        request.abort();</span><br><span class="line">        reject(cancel);</span><br><span class="line">        <span class="comment">// Clean up request</span></span><br><span class="line">        request = <span class="literal">null</span>;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">axios</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Javascript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/19/Vue/axios/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+  
+    <article id="post-Vue/vue-router权限管理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="接口管理"><a href="#接口管理" class="headerlink" title="接口管理"></a>接口管理</h1><p><code>jwt</code></p>
+<h2 id="路由权限管理"><a href="#路由权限管理" class="headerlink" title="路由权限管理"></a>路由权限管理</h2><ol>
+<li>初始化时候挂在全部路由，并在路由上做权限信息。每次跳转前判断。</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> routerMap = [</span><br><span class="line">  &#123;</span><br><span class="line">    path: <span class="string">&#x27;/permission&#x27;</span>,</span><br><span class="line">    component: Layout,</span><br><span class="line">    redirect: <span class="string">&#x27;/permission/index&#x27;</span>,</span><br><span class="line">    alwaysShow: <span class="literal">true</span>, <span class="comment">// will always show the root menu</span></span><br><span class="line">    meta: &#123;</span><br><span class="line">      title: <span class="string">&#x27;permission&#x27;</span>,</span><br><span class="line">      icon: <span class="string">&#x27;lock&#x27;</span>,</span><br><span class="line">      roles: [<span class="string">&#x27;admin&#x27;</span>, <span class="string">&#x27;editor&#x27;</span>] <span class="comment">// you can set roles in root nav</span></span><br><span class="line">    &#125;,</span><br><span class="line">    children: [&#123;</span><br><span class="line">      path: <span class="string">&#x27;page&#x27;</span>,</span><br><span class="line">      component: <span class="function">() =&gt;</span> <span class="keyword">import</span>(<span class="string">&#x27;@/views/permission/page&#x27;</span>),</span><br><span class="line">      name: <span class="string">&#x27;pagePermission&#x27;</span>,</span><br><span class="line">      meta: &#123;</span><br><span class="line">        title: <span class="string">&#x27;pagePermission&#x27;</span>,</span><br><span class="line">        roles: [<span class="string">&#x27;admin&#x27;</span>] <span class="comment">// or you can only set roles in sub nav</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;, &#123;</span><br><span class="line">      path: <span class="string">&#x27;directive&#x27;</span>,</span><br><span class="line">      component: <span class="function">() =&gt;</span> <span class="keyword">import</span>(<span class="string">&#x27;@/views/permission/directive&#x27;</span>),</span><br><span class="line">      name: <span class="string">&#x27;directivePermission&#x27;</span>,</span><br><span class="line">      meta: &#123;</span><br><span class="line">        title: <span class="string">&#x27;directivePermission&#x27;</span></span><br><span class="line">        <span class="comment">// if do not set roles, means: this page does not require permission</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;]</span><br><span class="line">  &#125;]</span><br></pre></td></tr></table></figure>
+<p>缺点</p>
+<ul>
+<li>加载全部路由，如果用户很多都不能访问则会对性能有影响。</li>
+<li>全局路由守卫里，每次路由跳转都要做权限判断。</li>
+<li>菜单信息写死在前端，要改显示文字或者权限，需要重新编译。</li>
+</ul>
+<ol start="2">
+<li>初始化的时候只挂在不需要权限控制的路由，比如1登录页，404等。在用户登陆后，获取用户权限信息，筛选出有权限访问的路由，在全局路由守卫中调用<code>addRoutes</code>添加路由。</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> router <span class="keyword">from</span> <span class="string">&#x27;./router&#x27;</span></span><br><span class="line"><span class="keyword">import</span> store <span class="keyword">from</span> <span class="string">&#x27;./store&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; Message &#125; <span class="keyword">from</span> <span class="string">&#x27;element-ui&#x27;</span></span><br><span class="line"><span class="keyword">import</span> NProgress <span class="keyword">from</span> <span class="string">&#x27;nprogress&#x27;</span> <span class="comment">// progress bar</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;nprogress/nprogress.css&#x27;</span><span class="comment">// progress bar style</span></span><br><span class="line"><span class="keyword">import</span> &#123; getToken &#125; <span class="keyword">from</span> <span class="string">&#x27;@/utils/auth&#x27;</span> <span class="comment">// getToken from cookie</span></span><br><span class="line"></span><br><span class="line">NProgress.configure(&#123; <span class="attr">showSpinner</span>: <span class="literal">false</span> &#125;)<span class="comment">// NProgress Configuration</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// permission judge function</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hasPermission</span>(<span class="params">roles, permissionRoles</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (roles.indexOf(<span class="string">&#x27;admin&#x27;</span>) &gt;= <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">true</span> <span class="comment">// admin permission passed directly</span></span><br><span class="line">  <span class="keyword">if</span> (!permissionRoles) <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">  <span class="keyword">return</span> roles.some(<span class="function"><span class="params">role</span> =&gt;</span> permissionRoles.indexOf(role) &gt;= <span class="number">0</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> whiteList = [<span class="string">&#x27;/login&#x27;</span>, <span class="string">&#x27;/authredirect&#x27;</span>]<span class="comment">// no redirect whitelist</span></span><br><span class="line"></span><br><span class="line">router.beforeEach(<span class="function">(<span class="params">to, <span class="keyword">from</span>, next</span>) =&gt;</span> &#123;</span><br><span class="line">  NProgress.start() <span class="comment">// start progress bar</span></span><br><span class="line">  <span class="keyword">if</span> (getToken()) &#123; <span class="comment">// determine if there has token</span></span><br><span class="line">    <span class="comment">/* has token*/</span></span><br><span class="line">    <span class="keyword">if</span> (to.path === <span class="string">&#x27;/login&#x27;</span>) &#123;</span><br><span class="line">      next(&#123; <span class="attr">path</span>: <span class="string">&#x27;/&#x27;</span> &#125;)</span><br><span class="line">      NProgress.done() <span class="comment">// if current page is dashboard will not trigger	afterEach hook, so manually handle it</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (store.getters.roles.length === <span class="number">0</span>) &#123; <span class="comment">// 判断当前用户是否已拉取完user_info信息</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//主要就是以下方法</span></span><br><span class="line">        <span class="comment">//获取用户权限，找到有权访问的路由，生成路由表。</span></span><br><span class="line">        store.dispatch(<span class="string">&#x27;GetUserInfo&#x27;</span>).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123; <span class="comment">// 拉取user_info</span></span><br><span class="line">          <span class="keyword">const</span> roles = res.data.roles <span class="comment">// note: roles must be a array! such as: [&#x27;editor&#x27;,&#x27;develop&#x27;]</span></span><br><span class="line">          store.dispatch(<span class="string">&#x27;GenerateRoutes&#x27;</span>, &#123; roles &#125;).then(<span class="function">() =&gt;</span> &#123; <span class="comment">// 根据roles权限生成可访问的路由表</span></span><br><span class="line">            router.addRoutes(store.getters.addRouters) <span class="comment">// 动态添加可访问路由表</span></span><br><span class="line">            next(&#123; ...to, <span class="attr">replace</span>: <span class="literal">true</span> &#125;) <span class="comment">// hack方法 确保addRoutes已完成 ,set the replace: true so the navigation will not leave a history record</span></span><br><span class="line">          &#125;)</span><br><span class="line">        &#125;).catch(<span class="function">(<span class="params">err</span>) =&gt;</span> &#123;</span><br><span class="line">          store.dispatch(<span class="string">&#x27;FedLogOut&#x27;</span>).then(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">            Message.error(err || <span class="string">&#x27;Verification failed, please login again&#x27;</span>)</span><br><span class="line">            next(&#123; <span class="attr">path</span>: <span class="string">&#x27;/&#x27;</span> &#125;)</span><br><span class="line">          &#125;)</span><br><span class="line">        &#125;)</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// 没有动态改变权限的需求可直接next() 删除下方权限判断 ↓</span></span><br><span class="line">        <span class="keyword">if</span> (hasPermission(store.getters.roles, to.meta.roles)) &#123;</span><br><span class="line">          next()<span class="comment">//</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          next(&#123; <span class="attr">path</span>: <span class="string">&#x27;/401&#x27;</span>, <span class="attr">replace</span>: <span class="literal">true</span>, <span class="attr">query</span>: &#123; <span class="attr">noGoBack</span>: <span class="literal">true</span> &#125;&#125;)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">/* has no token 没有登陆*/</span></span><br><span class="line">    <span class="keyword">if</span> (whiteList.indexOf(to.path) !== -<span class="number">1</span>) &#123; <span class="comment">// 在免登录白名单，直接进入</span></span><br><span class="line">      next()</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      next(<span class="string">&#x27;/login&#x27;</span>) <span class="comment">// 否则全部重定向到登录页</span></span><br><span class="line">      NProgress.done() <span class="comment">// if current page is login will not trigger afterEach hook, so manually handle it</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">router.afterEach(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  NProgress.done() <span class="comment">// finish progress bar</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>缺点</p>
+<ul>
+<li>全局路由守卫里，每次路由跳转都要做判断。</li>
+<li>菜单信息写死在前端，要改显示文字或者权限，需要重新编译。</li>
+</ul>
+<h2 id="菜单权限"><a href="#菜单权限" class="headerlink" title="菜单权限"></a>菜单权限</h2><ol>
+<li><p>路由与菜但分离，菜单由后端返回。<br>没看懂啥意思</p>
+</li>
+<li><p>菜单和路由都由后端返回，前端统一定义路由组件。</p>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Home = <span class="function">() =&gt;</span> <span class="keyword">import</span>(<span class="string">&quot;../pages/Home.vue&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> UserInfo = <span class="function">() =&gt;</span> <span class="keyword">import</span>(<span class="string">&quot;../pages/UserInfo.vue&quot;</span>);</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    home: Home,</span><br><span class="line">    userInfo: UserInfo</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>后端路由组件返回以下格式</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">        name: <span class="string">&quot;home&quot;</span>,</span><br><span class="line">        path: <span class="string">&quot;/&quot;</span>,</span><br><span class="line">        component: <span class="string">&quot;home&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        name: <span class="string">&quot;home&quot;</span>,</span><br><span class="line">        path: <span class="string">&quot;/userinfo&quot;</span>,</span><br><span class="line">        component: <span class="string">&quot;userInfo&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>在后端返回的路由通过<code>addRoutes</code>动态挂在，需要将数据处理一下，将<code>component</code>字段换为真正的组件。</p>
+<p>缺点</p>
+<ul>
+<li>全局路由守卫里，每次跳转路由都要做判断</li>
+<li>前后端配合要求高</li>
+</ul>
+
+      
+
+      
+    </div>
+
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/19/Vue/vue-router%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+  
+    <article id="post-Vue/js值传递" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>js中，参数传递只有一种规则:按值传递，基于值的复制。原始类型复制的是值本身，所以这两份数据互不影响；引用类型复制的是引用值，所以形参和实参指向同一个对象，通过一个饮用修改了对象，那么通过另外一个引用访问的对象就是修改后的对象</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">c</span>(<span class="params">a</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// a = &#123;1:2&#125;</span></span><br><span class="line">    a.x =<span class="number">12</span></span><br><span class="line">     </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// let a1 = 12;</span></span><br><span class="line"><span class="keyword">let</span> a2 = &#123;<span class="string">&#x27;x&#x27;</span>:<span class="number">1</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// c(a1)</span></span><br><span class="line">c(a2)</span><br><span class="line"><span class="built_in">console</span>.log(a2)</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a= &#123;<span class="attr">x</span>:<span class="number">1</span>&#125;</span><br><span class="line"><span class="keyword">var</span> b = a</span><br><span class="line">a.x = a = &#123;<span class="attr">m</span>:<span class="number">1</span>&#125;</span><br><span class="line"><span class="built_in">console</span>.log(a,b)</span><br><span class="line"></span><br><span class="line"><span class="comment">//console </span></span><br><span class="line"></span><br><span class="line">a = &#123;<span class="attr">m</span>:<span class="number">1</span>&#125;</span><br><span class="line">b = &#123;<span class="attr">x</span>:&#123;<span class="attr">m</span>:<span class="number">1</span>&#125;&#125;</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/17/Vue/js%E5%80%BC%E4%BC%A0%E9%80%92/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+  
+    <article id="post-Vue/v-model相关" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/17/Vue/v-model%E7%9B%B8%E5%85%B3/">v-model在VUE3中的变化</a>
+    </h1>
+  
+
+        
+        <a href="/2021/03/17/Vue/v-model%E7%9B%B8%E5%85%B3/" class="archive-article-date">
+  	<time datetime="2021-03-17T06:16:38.534Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-17</time>
+</a>
+        
+      </header>
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <a id="more"></a>
+
+<ul>
+<li><p>用于自定义组件时，<code>v-model</code>prop和时间默认名称改变为：</p>
+<ul>
+<li>prop: <code>value</code> -&gt; <code>modelValue</code></li>
+<li>event <code>input</code> -&gt; <code>update:modelValue</code></li>
+</ul>
+</li>
+<li><p>同时<code>v-bind</code>的<code>.sync</code>已经删除</p>
+</li>
+<li><p>现在同一个组件上可以使用多个<code>v-model</code>进行双向绑定</p>
+</li>
+<li><p>现在可以自定义<code>v-model</code>修饰符</p>
+</li>
+</ul>
+<p>定义v-model</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  model: &#123;</span><br><span class="line">    prop: <span class="string">&#x27;title&#x27;</span>,</span><br><span class="line">    event: <span class="string">&#x27;change&#x27;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  props: &#123;</span><br><span class="line">    <span class="comment">// 这将允许 `value` 属性用于其他用途</span></span><br><span class="line">    value: <span class="built_in">String</span>,</span><br><span class="line">    <span class="comment">// 使用 `title` 代替 `value` 作为 model 的 prop</span></span><br><span class="line">    title: &#123;</span><br><span class="line">      type: <span class="built_in">String</span>,</span><br><span class="line">      <span class="keyword">default</span>: <span class="string">&#x27;Default title&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 相当于</span></span><br><span class="line">&lt;ChildComponent :title=<span class="string">&quot;pageTitle&quot;</span> @change=<span class="string">&quot;pageTitle = $event&quot;</span> /&gt;</span><br></pre></td></tr></table></figure>
+<p>Vue2中</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;ChildComponent v-model=<span class="string">&quot;pageTitle&quot;</span> /&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 简写: --&gt;</span><br><span class="line"></span><br><span class="line">&lt;ChildComponent :value=<span class="string">&quot;pageTitle&quot;</span> @input=<span class="string">&quot;pageTitle = $event&quot;</span> /&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>Vue3中</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;ChildComponent v-model=<span class="string">&quot;pageTitle&quot;</span> /&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 简写: --&gt;</span><br><span class="line"></span><br><span class="line">&lt;ChildComponent</span><br><span class="line">  :modelValue=<span class="string">&quot;pageTitle&quot;</span></span><br><span class="line">  @update:modelValue=<span class="string">&quot;pageTitle = $event&quot;</span></span><br><span class="line">/&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>Vue3中多个v-model绑定</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;ChildComponent v-model:title=<span class="string">&quot;pageTitle&quot;</span> v-model:content=<span class="string">&quot;pageContent&quot;</span> /&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 简写： --&gt;</span><br><span class="line"></span><br><span class="line">&lt;ChildComponent</span><br><span class="line">  :title=<span class="string">&quot;pageTitle&quot;</span></span><br><span class="line">  @update:title=<span class="string">&quot;pageTitle = $event&quot;</span></span><br><span class="line">  :content=<span class="string">&quot;pageContent&quot;</span></span><br><span class="line">  @update:content=<span class="string">&quot;pageContent = $event&quot;</span></span><br><span class="line">/&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Vue</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/17/Vue/v-model%E7%9B%B8%E5%85%B3/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+  
+    <article id="post-babel编译原理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/16/babel%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/">babel编译原理</a>
+    </h1>
+  
+
+        
+        <a href="/2021/03/16/babel%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" class="archive-article-date">
+  	<time datetime="2021-03-16T11:38:19.552Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-16</time>
+</a>
+        
+      </header>
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Babel主要作用是将ES6+代码转变成ES5代码，其本身并不执行代码。</p>
+<p>即：ES6+代码字符串 =&gt; Babel =&gt; ES5代码字符串。</p>
+        
+      
+
+      
+    </div>
+
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/16/babel%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+  
     <article id="post-chromeExtension/screenLook-summary" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -201,11 +763,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Chrome extension</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Chrome extension</a>
         		</li>
       		
 		</ul>
@@ -331,644 +893,10 @@
 
 
   
-    <article id="post-pwa/what-is-service-work" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/01/27/pwa/what-is-service-work/">Service Worker初探</a>
-    </h1>
-  
-
-        
-        <a href="/2021/01/27/pwa/what-is-service-work/" class="archive-article-date">
-  	<time datetime="2021-01-27T13:05:53.218Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-27</time>
-</a>
-        
-      </header>
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="什么是ServiceWorker"><a href="#什么是ServiceWorker" class="headerlink" title="什么是ServiceWorker"></a>什么是ServiceWorker</h1><p>Service Worker本质上充当Web应用程序，浏览器与网络（可用时）之间的代理服务器。这个API旨在创建有效的离线体验。它在拦截请求并根据网络是否可用来采取适当动作、更新来自服务器的资源。<br>Service Woker运行在worker上下文，因此不访问DOM。它设计为完全异步。因此同步API(XHR和localStorage)在service worker中不能使用。<br>出于安全考虑，Service workers只能在https，localhost下使用。</p>
-        
-      
-
-      
-    </div>
-
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">serviceWorker</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">PWA</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/01/27/pwa/what-is-service-work/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-
-  
-    <article id="post-pwa/pwa" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/01/26/pwa/pwa/">缓存策略</a>
-    </h1>
-  
-
-        
-        <a href="/2021/01/26/pwa/pwa/" class="archive-article-date">
-  	<time datetime="2021-01-26T04:14:11.261Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-26</time>
-</a>
-        
-      </header>
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>使用的JavaScript API ＃<br>使用诸如navigator.hardwareConcurrency，navigator.deviceMemory和navigator.connection之类的JavaScript API ，您可以分别获取有关设备CPU，内存和网络状态的信息。</p>
-        
-      
-
-      
-    </div>
-
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">serviceWorker</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">PWA</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/01/26/pwa/pwa/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-
-  
-    <article id="post-css-filter" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/01/25/css-filter/">css filter属性</a>
-    </h1>
-  
-
-        
-        <a href="/2021/01/25/css-filter/" class="archive-article-date">
-  	<time datetime="2021-01-25T12:46:17.373Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-25</time>
-</a>
-        
-      </header>
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>filter:</p>
-        
-      
-
-      
-    </div>
-
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">css</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/01/25/css-filter/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-
-  
-    <article id="post-photo/photo" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/01/24/photo/photo/">放了个相册</a>
-    </h1>
-  
-
-        
-        <a href="/2021/01/24/photo/photo/" class="archive-article-date">
-  	<time datetime="2021-01-24T12:27:35.759Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-24</time>
-</a>
-        
-      </header>
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>我日你先人sdadsadad</p>
-
-      
-
-      
-    </div>
-
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">photo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/01/24/photo/photo/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-
-  
-    <article id="post-chromeExtension/chrome-extension-screen-record" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/01/24/chromeExtension/chrome-extension-screen-record/">实现一个录屏chrome插件</a>
-    </h1>
-  
-
-        
-        <a href="/2021/01/24/chromeExtension/chrome-extension-screen-record/" class="archive-article-date">
-  	<time datetime="2021-01-24T07:14:45.139Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-24</time>
-</a>
-        
-      </header>
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">const</span> mediaDevices = navigator.mediaDevices;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-        
-      
-
-      
-    </div>
-
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Chrome extension</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/01/24/chromeExtension/chrome-extension-screen-record/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-
-  
-    <article id="post-translate/how-to-build-an-html-calculation" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/01/24/translate/how-to-build-an-html-calculation/">实现一个html计算器</a>
-    </h1>
-  
-
-        
-        <a href="/2021/01/24/translate/how-to-build-an-html-calculation/" class="archive-article-date">
-  	<time datetime="2021-01-23T16:07:58.019Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-24</time>
-</a>
-        
-      </header>
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<ul>
-<li>原文地址：<a target="_blank" rel="noopener" href="https://www.freecodecamp.org/news/how-to-build-an-html-calculator-app-from-scratch-using-javascript-4454b8714b98/">How to build an HTML calculator app from scratch using JavaScript 用 JavaScript 制作一个 HTML 计算器</a></li>
-<li>原文作者：Zell Liew</li>
-<li>译者：lanxisama</li>
-<li>校对者：</li>
-</ul>
-</blockquote>
-<p>这是一篇很棒的文章，在这里你可以学习如何从零做出一款计算器。我们希望你使用 JavaScript 开发并且思考怎么构建一款计算器, 如何编写代码，以及最后，如何整理自己的代码。</p>
-<p>在这篇文章结束，你会得到一款和 iPhone 计算器功能一样的计算器（除了 +/- 和百分比功能外）。</p>
-        
-      
-
-      
-    </div>
-
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">translate</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/01/24/translate/how-to-build-an-html-calculation/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-
-  
-    <article id="post-test-markdown/first-blog" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/01/23/test-markdown/first-blog/">My first Blog Post</a>
-    </h1>
-  
-
-        
-        <a href="/2021/01/23/test-markdown/first-blog/" class="archive-article-date">
-  	<time datetime="2021-01-23T12:44:43.241Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-23</time>
-</a>
-        
-      </header>
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h5 id="Markdown中不能使用自闭合标签"><a href="#Markdown中不能使用自闭合标签" class="headerlink" title="Markdown中不能使用自闭合标签"></a>Markdown中不能使用自闭合标签</h5><h1 id="山本-给句痛快话"><a href="#山本-给句痛快话" class="headerlink" title="山本 给句痛快话"></a>山本 给句痛快话</h1><h2 id="投降不投降"><a href="#投降不投降" class="headerlink" title="投降不投降"></a>投降不投降</h2><p>这地方新建的博客 可以用<br>hexo n ‘博客标题’ 命令创建<br>hexo d 推送到仓库<br>hexo new “postName” #新建文章<br>hexo new page “pageName” #新建页面<br>hexo generate #生成静态页面至public目录<br>hexo server #开启预览访问端口（默认端口4000，’ctrl + c’关闭server）<br>hexo deploy #将.deploy目录部署到GitHub<br>hexo new page “xx” 新建页面<br>在source中添加文件夹， 文件夹路径相当于url路径</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = <span class="number">1</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<div style="background:red;margin:20px;border:1px solid black;">
-  这地方插入一个html节点
-</div>
-      
-
-      
-    </div>
-
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/01/23/test-markdown/first-blog/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-
-  
-    <article id="post-test-markdown/hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/01/23/test-markdown/hello-world/">第一篇</a>
-    </h1>
-  
-
-        
-        <a href="/2021/01/23/test-markdown/hello-world/" class="archive-article-date">
-  	<time datetime="2021-01-23T12:40:40.962Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-23</time>
-</a>
-        
-      </header>
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-
-      
-    </div>
-
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/01/23/test-markdown/hello-world/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-
-  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+    </nav>
   
 
 
@@ -1081,11 +1009,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Chrome extension</a>
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+                <a href="javascript:void(0)" class="js-tag color2">Chrome extension</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1102,6 +1030,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">translate</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">axios</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Vue</a>
               </li>
             
             <div class="clearfix"></div>
@@ -1158,6 +1098,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           
             <li class="search-li">
               <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接2</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="https://wubaijin.top/articleDetail/605b5e6b61401c133ca2c2dc" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>Myway</a>
             </li>
           
         </ul>
