@@ -165,6 +165,164 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-前端音乐可视化" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/04/02/%E5%89%8D%E7%AB%AF%E9%9F%B3%E4%B9%90%E5%8F%AF%E8%A7%86%E5%8C%96/">前端音乐可视化</a>
+    </h1>
+  
+
+        
+        <a href="/2021/04/02/%E5%89%8D%E7%AB%AF%E9%9F%B3%E4%B9%90%E5%8F%AF%E8%A7%86%E5%8C%96/" class="archive-article-date">
+  	<time datetime="2021-04-02T03:04:20.395Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-02</time>
+</a>
+        
+      </header>
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <a id="more"></a>
+
+
+<h2 id="AudioContext-获取音频数据"><a href="#AudioContext-获取音频数据" class="headerlink" title="AudioContext 获取音频数据"></a>AudioContext 获取音频数据</h2><blockquote>
+<p>Web Audio是web短处理和分析音频的API，可以设置不同的音频来源（包括<code>&lt;audio&gt;</code>节点，ArrayBuffer，用户设备等），对音频添加音效，生成可视化图形等。</p>
+</blockquote>
+<h3 id="Web-Audio在可视化中的作用"><a href="#Web-Audio在可视化中的作用" class="headerlink" title="Web Audio在可视化中的作用"></a>Web Audio在可视化中的作用</h3><blockquote>
+<p>播放音频，获取frequencyData，根据这个绘制图形。</p>
+</blockquote>
+<h3 id="1-创建AudioContext"><a href="#1-创建AudioContext" class="headerlink" title="1.创建AudioContext"></a>1.创建AudioContext</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> AudioContext = <span class="built_in">window</span>.AudioContext || <span class="built_in">window</span>.webKitAudioContext;</span><br><span class="line"><span class="keyword">const</span> ctx = <span class="keyword">new</span> AudioContext();</span><br></pre></td></tr></table></figure>
+<h3 id="2-创建AnalyserNode"><a href="#2-创建AnalyserNode" class="headerlink" title="2.创建AnalyserNode"></a>2.创建AnalyserNode</h3><blockquote>
+<p>用于获取音频数据包括频率数据和时域数据</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> analyser = ctx.createAnalyser();</span><br><span class="line">analyser.fftSize = <span class="number">512</span>; <span class="comment">//这个参数是一个快速傅里叶参数 值为2的幂次方，数字越大结果越精确</span></span><br><span class="line"><span class="comment">//这个值决定了频率数据的长度</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-设置SourceNode"><a href="#3-设置SourceNode" class="headerlink" title="3.设置SourceNode"></a>3.设置SourceNode</h3><blockquote>
+<p>把音频节点关联到AudioContext上。<br>Web Audio种有三种类型源</p>
+</blockquote>
+<ul>
+<li>MediaElementAudioSourceNode 允许将<code>&lt;audio&gt;</code>节点直接作为输入，可做到流式播放。</li>
+<li>AudioBufferSourceNode 通过 xhr 预先将音频文件加载下来，再用 AudioContext 进行解码。</li>
+<li>MediaStreamAudioSourceNode 可以将用户的麦克风作为输入。即通过navigator.getUserMedia获取用户的音频或视频流后，生成音频源。</li>
+</ul>
+<h3 id="4-播放音频"><a href="#4-播放音频" class="headerlink" title="4.播放音频"></a>4.播放音频</h3><p>MediaElementAudioSourceNode 直接使用Play方法播放<br>AudioBufferSourceNode 需要调用start(0)播放</p>
+<h3 id="5。获取频率"><a href="#5。获取频率" class="headerlink" title="5。获取频率"></a>5。获取频率</h3><ol>
+<li>analyser.getByteFrequencyData 返回的是0-255的Uint8Array</li>
+<li>analyser.getFloatFrequencyData 返回的是0-22050的Float32Array</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> bufferLength = analyser.frequencyBinCount;</span><br><span class="line"><span class="keyword">const</span> dataArray = <span class="keyword">new</span> <span class="built_in">Uint8Array</span>(bufferLength);</span><br><span class="line"></span><br><span class="line">analyser.getByteFrequencyData(dataArray); <span class="comment">//对已有数组赋值，不返回新数组</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Canvas根据音频数据绘制"><a href="#Canvas根据音频数据绘制" class="headerlink" title="Canvas根据音频数据绘制"></a>Canvas根据音频数据绘制</h2>
+      
+
+      
+    </div>
+
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/04/02/%E5%89%8D%E7%AB%AF%E9%9F%B3%E4%B9%90%E5%8F%AF%E8%A7%86%E5%8C%96/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+  
+    <article id="post-骨架屏" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>避免样式文件的加载阻塞骨架屏的渲染<br>Webpack 编译的 Vue 项目，会在 index.html 的 <head> 插入外链的样式文件，<link ref="stylesheet" href="http://xxxx">，这无疑会阻塞骨架屏的渲染。浏览器还提供了预加载机制，使用方法非常简单，只需将 rel=”stylesheet” 改为 rel=”preload”，浏览器会在空闲的时候加载并缓存，之后再使用就不用重复加载。</p>
+<p>这看似无关的技术，在骨架屏的应用里将起到很大的作用，因为预加载的资源不会阻塞渲染.</p>
+<p>我们通过这种方式告诉浏览器，先不要管 app.xxx.css，直接渲染后续内容，在 app.xxx.css 文件加载完成之后，再将它重新设置为样式文件，如下代码所示：</p>
+<link rel="preload" href="/static/css/app.5be76b7d213b43df9723e8ab15122efb.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+方法的核心是通过改变 rel 让浏览器重新认定这个 <link> 标签是样式文件，这样既不阻塞骨架屏的渲染，也能正常应用外链样式文件。
+      
+
+      
+    </div>
+
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/04/01/%E9%AA%A8%E6%9E%B6%E5%B1%8F/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+  
     <article id="post-new Object和Object.create的区别" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -427,7 +585,10 @@
 </blockquote>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = [<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">1</span>,<span class="number">4</span>,<span class="number">7</span>]</span><br><span class="line"></span><br><span class="line">a.forEach(<span class="function"><span class="params">n</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">()=&gt;</span><span class="built_in">console</span>.log(n),n)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 由于js异步特性和事件循环的处理方式等，可能有时失灵</span></span><br></pre></td></tr></table></figure>
 
-
+<blockquote>
+<p>var name</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = 任何值</span><br><span class="line"><span class="keyword">typeof</span> <span class="built_in">window</span>.name (<span class="keyword">typeof</span> name) 都是string</span><br><span class="line"></span><br><span class="line">因为name是<span class="built_in">window</span>上的全局属性</span><br></pre></td></tr></table></figure>
       
 
       
@@ -604,7 +765,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// computed</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">computed</span>(<span class="params">fn</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> runner = effect(fn, &#123;</span><br><span class="line">        lazy: <span class="literal">true</span>,</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        <span class="keyword">get</span> <span class="title">value</span>() &#123;</span><br><span class="line">            <span class="comment">// 执行收集</span></span><br><span class="line">            <span class="keyword">return</span> runner();</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="keyword">set</span> <span class="title">value</span>(<span class="params">value</span>) &#123;&#125;,</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// watch</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">watch</span>(<span class="params">source, cb</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> getter = <span class="function">() =&gt;</span> &#123;&#125;;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> source === <span class="string">&quot;function&quot;</span>) &#123;</span><br><span class="line">        getter = source;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 收集信息</span></span><br><span class="line">    <span class="comment">//依赖的getter变化时 触发scheduler？</span></span><br><span class="line">    <span class="keyword">let</span> runner = effect(getter, &#123;</span><br><span class="line">        lazy: <span class="literal">true</span>,</span><br><span class="line">        scheduler: <span class="function">() =&gt;</span> &#123;</span><br><span class="line">            <span class="comment">// 执行回调</span></span><br><span class="line">            <span class="keyword">let</span> value = runner();</span><br><span class="line">            <span class="keyword">if</span> (value !== oldValue) &#123;</span><br><span class="line">                cb(oldValue, value);</span><br><span class="line">            &#125;</span><br><span class="line">            oldValue = value</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="comment">// 第一次执行收集</span></span><br><span class="line">    <span class="keyword">let</span> oldValue = runner();</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">effect</span>(<span class="params">fn, options = &#123;&#125;</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> effect = createEffect(fn, options);</span><br><span class="line">    <span class="keyword">if</span> (!options.lazy) &#123;</span><br><span class="line">        <span class="comment">// 执行收集</span></span><br><span class="line">        effect();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> effect;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> uid = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> effectStack = [];</span><br><span class="line"><span class="keyword">let</span> activeEffect = <span class="literal">null</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createEffect</span>(<span class="params">fn, options</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> effect = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="comment">//已经收集了</span></span><br><span class="line">        <span class="keyword">if</span> (!effectStack.includes(effect)) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                effectStack.push(effect);</span><br><span class="line">                activeEffect = effect;</span><br><span class="line">                <span class="comment">// 首次执行收集</span></span><br><span class="line">                <span class="keyword">return</span> fn();。</span><br><span class="line">            &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                <span class="comment">// 处理完成</span></span><br><span class="line">                effectStack.pop();</span><br><span class="line">                activeEffect = effectStack[effectStack.length - <span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    effect.raw = fn;</span><br><span class="line">    effect.id = uid++;</span><br><span class="line">    effect.options = options;</span><br><span class="line">    <span class="keyword">return</span> effect;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+        <a id="more"></a>
+
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// computed</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">computed</span>(<span class="params">fn</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> runner = effect(fn, &#123;</span><br><span class="line">        lazy: <span class="literal">true</span>,</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        <span class="keyword">get</span> <span class="title">value</span>() &#123;</span><br><span class="line">            <span class="comment">// 执行收集</span></span><br><span class="line">            <span class="keyword">return</span> runner();</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="keyword">set</span> <span class="title">value</span>(<span class="params">value</span>) &#123;&#125;,</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// watch</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">watch</span>(<span class="params">source, cb</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> getter = <span class="function">() =&gt;</span> &#123;&#125;;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> source === <span class="string">&quot;function&quot;</span>) &#123;</span><br><span class="line">        getter = source;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 收集信息</span></span><br><span class="line">    <span class="comment">//依赖的getter变化时 触发scheduler？</span></span><br><span class="line">    <span class="keyword">let</span> runner = effect(getter, &#123;</span><br><span class="line">        lazy: <span class="literal">true</span>,</span><br><span class="line">        scheduler: <span class="function">() =&gt;</span> &#123;</span><br><span class="line">            <span class="comment">// 执行回调</span></span><br><span class="line">            <span class="keyword">let</span> value = runner();</span><br><span class="line">            <span class="keyword">if</span> (value !== oldValue) &#123;</span><br><span class="line">                cb(oldValue, value);</span><br><span class="line">            &#125;</span><br><span class="line">            oldValue = value</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="comment">// 第一次执行收集</span></span><br><span class="line">    <span class="keyword">let</span> oldValue = runner();</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">effect</span>(<span class="params">fn, options = &#123;&#125;</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> effect = createEffect(fn, options);</span><br><span class="line">    <span class="keyword">if</span> (!options.lazy) &#123;</span><br><span class="line">        <span class="comment">// 执行收集</span></span><br><span class="line">        effect();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> effect;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> uid = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> effectStack = [];</span><br><span class="line"><span class="keyword">let</span> activeEffect = <span class="literal">null</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createEffect</span>(<span class="params">fn, options</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> effect = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="comment">//已经收集了</span></span><br><span class="line">        <span class="keyword">if</span> (!effectStack.includes(effect)) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                effectStack.push(effect);</span><br><span class="line">                activeEffect = effect;</span><br><span class="line">                <span class="comment">// 首次执行收集</span></span><br><span class="line">                <span class="keyword">return</span> fn();。</span><br><span class="line">            &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                <span class="comment">// 处理完成</span></span><br><span class="line">                effectStack.pop();</span><br><span class="line">                activeEffect = effectStack[effectStack.length - <span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    effect.raw = fn;</span><br><span class="line">    effect.id = uid++;</span><br><span class="line">    effect.options = options;</span><br><span class="line">    <span class="keyword">return</span> effect;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
       
 
       
@@ -618,182 +782,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2021/03/20/Vue/computed%E5%92%8Cwatch/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-
-  
-    <article id="post-Vue/axios" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/03/19/Vue/axios/">axios</a>
-    </h1>
-  
-
-        
-        <a href="/2021/03/19/Vue/axios/" class="archive-article-date">
-  	<time datetime="2021-03-19T04:22:10.520Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-19</time>
-</a>
-        
-      </header>
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <a id="more"></a>
-
-<h2 id="Axios取消请求"><a href="#Axios取消请求" class="headerlink" title="Axios取消请求"></a>Axios取消请求</h2><blockquote>
-<p>重复的<code>get</code>请求，会导致页面多次更新发生抖动。<br>重复的<code>post</code>请求，会导致服务器端生成两次记录。</p>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//方法一</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// CancelToken是一个构造函数，用于创建一个cancelToken实例对象</span></span><br><span class="line"><span class="comment">// cancelToken实例对象包含了一个promise属性，值为可以触发取消请求的一个promise</span></span><br><span class="line"><span class="keyword">const</span> CancelToken = axios.CancelToken;</span><br><span class="line"><span class="comment">// 执行source()得到的是一个包含了cancelToken对象和一个取消函数cancel()的对象</span></span><br><span class="line"><span class="comment">// 即 source = &#123;token: cancelToken对象, cancel: 取消函数&#125;</span></span><br><span class="line"><span class="keyword">const</span> source = CancelToken.source();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 在请求的配置中配置cancelToken，那么这个请求就有了可以取消请求的功能</span></span><br><span class="line">axios.get(<span class="string">&#x27;/user/12345&#x27;</span>, &#123;</span><br><span class="line">  cancelToken: source.token</span><br><span class="line">&#125;).catch(<span class="function"><span class="keyword">function</span>(<span class="params">thrown</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (axios.isCancel(thrown)) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;Request canceled&#x27;</span>, thrown.message);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">     <span class="comment">// 处理错误</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">axios.post(<span class="string">&#x27;/user/12345&#x27;</span>, &#123;</span><br><span class="line">  name: <span class="string">&#x27;new name&#x27;</span></span><br><span class="line">&#125;, &#123;</span><br><span class="line">  cancelToken: source.token</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 执行取消请求（message 参数是可选的）</span></span><br><span class="line">source.cancel(<span class="string">&#x27;Operation canceled by the user.&#x27;</span>);</span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"><span class="comment">//方法二</span></span><br><span class="line"></span><br><span class="line"> <span class="keyword">const</span> CancelToken = axios.CancelToken;</span><br><span class="line"><span class="keyword">let</span> cancel;</span><br><span class="line"></span><br><span class="line">axios.get(<span class="string">&#x27;/user/12345&#x27;</span>, &#123;</span><br><span class="line">  cancelToken: <span class="keyword">new</span> CancelToken(<span class="function"><span class="keyword">function</span> <span class="title">executor</span>(<span class="params">c</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// executor 函数接收一个 cancel 函数作为参数</span></span><br><span class="line">    <span class="comment">// 把cancel函数传递给外面，使得外面能控制执行取消请求</span></span><br><span class="line">    cancel = c;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// cancel the request</span></span><br><span class="line">cancel();</span><br><span class="line"> </span><br></pre></td></tr></table></figure>
-<p>一般请求会进行封装，可以这样写</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">getCourseReq</span>(<span class="params">params, _this</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> axios.get(<span class="string">&#x27;/api/app/course&#x27;</span>,&#123;</span><br><span class="line">           params: params,</span><br><span class="line">           cancelToken: <span class="keyword">new</span> CancelToken(<span class="function"><span class="keyword">function</span> <span class="title">executor</span>(<span class="params">c</span>) </span>&#123;</span><br><span class="line">                <span class="comment">// 1. cancel函数赋值给cancelRequest属性</span></span><br><span class="line">                <span class="comment">// 从而可以通过cancelRequest执行取消请求的操作</span></span><br><span class="line">                _this.cancelRequest = c</span><br><span class="line">          &#125;) </span><br><span class="line">       &#125;)</span><br><span class="line">       .then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;&#125;)</span><br><span class="line">       .catch(<span class="function"><span class="params">err</span> =&gt;</span> &#123;&#125;)</span><br><span class="line">&#125;</span><br><span class="line"> </span><br></pre></td></tr></table></figure>
-
-<h2 id="axios取消请求原理"><a href="#axios取消请求原理" class="headerlink" title="axios取消请求原理"></a>axios取消请求原理</h2><p>利用xmlhttprequest.abort()方法</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line"></span><br><span class="line">xhr.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(xhr.readyState === <span class="number">4</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(xhr.status === <span class="number">200</span>)&#123;</span><br><span class="line">            <span class="comment">//成功</span></span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="comment">//error</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">xhr.open(<span class="string">&#x27;get&#x27;</span>,<span class="string">&#x27;/api/id&#x27;</span>,<span class="literal">true</span>) <span class="comment">// 第三个参数选择 Ajax请求是异步处理还是同步处理,true是异步</span></span><br><span class="line">xhr.send() <span class="comment">// 发送请求</span></span><br><span class="line"></span><br><span class="line">xhr.abort() <span class="comment">//取消请求 调用这个方法以后，readyState属性变为4，status属性变为0。</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// axios/lib/adapters/xhr.js</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建XHR对象</span></span><br><span class="line"><span class="keyword">var</span> request = <span class="keyword">new</span> XMLHttpRequest()</span><br><span class="line"><span class="comment">// 模拟当前ajax请求</span></span><br><span class="line">request.open(config.method.toUpperCase(), buildURL(config.url, config.params, config.paramsSerializer), <span class="literal">true</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义取消请求promise对象的then函数</span></span><br><span class="line"><span class="keyword">if</span> (config.cancelToken) &#123; <span class="comment">// 如果配置了cancelToken属性</span></span><br><span class="line">    <span class="comment">// 当promise为完成态时，这个then函数执行，即执行取消请求</span></span><br><span class="line">    config.cancelToken.promise.then(<span class="function"><span class="keyword">function</span> <span class="title">onCanceled</span>(<span class="params">cancel</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!request) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 取消ajax请求</span></span><br><span class="line">        request.abort();</span><br><span class="line">        reject(cancel);</span><br><span class="line">        <span class="comment">// Clean up request</span></span><br><span class="line">        request = <span class="literal">null</span>;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">axios</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Javascript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/03/19/Vue/axios/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-
-  
-    <article id="post-Vue/vue-router权限管理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="接口管理"><a href="#接口管理" class="headerlink" title="接口管理"></a>接口管理</h1><p><code>jwt</code></p>
-<h2 id="路由权限管理"><a href="#路由权限管理" class="headerlink" title="路由权限管理"></a>路由权限管理</h2><ol>
-<li>初始化时候挂在全部路由，并在路由上做权限信息。每次跳转前判断。</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> routerMap = [</span><br><span class="line">  &#123;</span><br><span class="line">    path: <span class="string">&#x27;/permission&#x27;</span>,</span><br><span class="line">    component: Layout,</span><br><span class="line">    redirect: <span class="string">&#x27;/permission/index&#x27;</span>,</span><br><span class="line">    alwaysShow: <span class="literal">true</span>, <span class="comment">// will always show the root menu</span></span><br><span class="line">    meta: &#123;</span><br><span class="line">      title: <span class="string">&#x27;permission&#x27;</span>,</span><br><span class="line">      icon: <span class="string">&#x27;lock&#x27;</span>,</span><br><span class="line">      roles: [<span class="string">&#x27;admin&#x27;</span>, <span class="string">&#x27;editor&#x27;</span>] <span class="comment">// you can set roles in root nav</span></span><br><span class="line">    &#125;,</span><br><span class="line">    children: [&#123;</span><br><span class="line">      path: <span class="string">&#x27;page&#x27;</span>,</span><br><span class="line">      component: <span class="function">() =&gt;</span> <span class="keyword">import</span>(<span class="string">&#x27;@/views/permission/page&#x27;</span>),</span><br><span class="line">      name: <span class="string">&#x27;pagePermission&#x27;</span>,</span><br><span class="line">      meta: &#123;</span><br><span class="line">        title: <span class="string">&#x27;pagePermission&#x27;</span>,</span><br><span class="line">        roles: [<span class="string">&#x27;admin&#x27;</span>] <span class="comment">// or you can only set roles in sub nav</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;, &#123;</span><br><span class="line">      path: <span class="string">&#x27;directive&#x27;</span>,</span><br><span class="line">      component: <span class="function">() =&gt;</span> <span class="keyword">import</span>(<span class="string">&#x27;@/views/permission/directive&#x27;</span>),</span><br><span class="line">      name: <span class="string">&#x27;directivePermission&#x27;</span>,</span><br><span class="line">      meta: &#123;</span><br><span class="line">        title: <span class="string">&#x27;directivePermission&#x27;</span></span><br><span class="line">        <span class="comment">// if do not set roles, means: this page does not require permission</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;]</span><br><span class="line">  &#125;]</span><br></pre></td></tr></table></figure>
-<p>缺点</p>
-<ul>
-<li>加载全部路由，如果用户很多都不能访问则会对性能有影响。</li>
-<li>全局路由守卫里，每次路由跳转都要做权限判断。</li>
-<li>菜单信息写死在前端，要改显示文字或者权限，需要重新编译。</li>
-</ul>
-<ol start="2">
-<li>初始化的时候只挂在不需要权限控制的路由，比如1登录页，404等。在用户登陆后，获取用户权限信息，筛选出有权限访问的路由，在全局路由守卫中调用<code>addRoutes</code>添加路由。</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> router <span class="keyword">from</span> <span class="string">&#x27;./router&#x27;</span></span><br><span class="line"><span class="keyword">import</span> store <span class="keyword">from</span> <span class="string">&#x27;./store&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; Message &#125; <span class="keyword">from</span> <span class="string">&#x27;element-ui&#x27;</span></span><br><span class="line"><span class="keyword">import</span> NProgress <span class="keyword">from</span> <span class="string">&#x27;nprogress&#x27;</span> <span class="comment">// progress bar</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;nprogress/nprogress.css&#x27;</span><span class="comment">// progress bar style</span></span><br><span class="line"><span class="keyword">import</span> &#123; getToken &#125; <span class="keyword">from</span> <span class="string">&#x27;@/utils/auth&#x27;</span> <span class="comment">// getToken from cookie</span></span><br><span class="line"></span><br><span class="line">NProgress.configure(&#123; <span class="attr">showSpinner</span>: <span class="literal">false</span> &#125;)<span class="comment">// NProgress Configuration</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// permission judge function</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hasPermission</span>(<span class="params">roles, permissionRoles</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (roles.indexOf(<span class="string">&#x27;admin&#x27;</span>) &gt;= <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">true</span> <span class="comment">// admin permission passed directly</span></span><br><span class="line">  <span class="keyword">if</span> (!permissionRoles) <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">  <span class="keyword">return</span> roles.some(<span class="function"><span class="params">role</span> =&gt;</span> permissionRoles.indexOf(role) &gt;= <span class="number">0</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> whiteList = [<span class="string">&#x27;/login&#x27;</span>, <span class="string">&#x27;/authredirect&#x27;</span>]<span class="comment">// no redirect whitelist</span></span><br><span class="line"></span><br><span class="line">router.beforeEach(<span class="function">(<span class="params">to, <span class="keyword">from</span>, next</span>) =&gt;</span> &#123;</span><br><span class="line">  NProgress.start() <span class="comment">// start progress bar</span></span><br><span class="line">  <span class="keyword">if</span> (getToken()) &#123; <span class="comment">// determine if there has token</span></span><br><span class="line">    <span class="comment">/* has token*/</span></span><br><span class="line">    <span class="keyword">if</span> (to.path === <span class="string">&#x27;/login&#x27;</span>) &#123;</span><br><span class="line">      next(&#123; <span class="attr">path</span>: <span class="string">&#x27;/&#x27;</span> &#125;)</span><br><span class="line">      NProgress.done() <span class="comment">// if current page is dashboard will not trigger	afterEach hook, so manually handle it</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (store.getters.roles.length === <span class="number">0</span>) &#123; <span class="comment">// 判断当前用户是否已拉取完user_info信息</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//主要就是以下方法</span></span><br><span class="line">        <span class="comment">//获取用户权限，找到有权访问的路由，生成路由表。</span></span><br><span class="line">        store.dispatch(<span class="string">&#x27;GetUserInfo&#x27;</span>).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123; <span class="comment">// 拉取user_info</span></span><br><span class="line">          <span class="keyword">const</span> roles = res.data.roles <span class="comment">// note: roles must be a array! such as: [&#x27;editor&#x27;,&#x27;develop&#x27;]</span></span><br><span class="line">          store.dispatch(<span class="string">&#x27;GenerateRoutes&#x27;</span>, &#123; roles &#125;).then(<span class="function">() =&gt;</span> &#123; <span class="comment">// 根据roles权限生成可访问的路由表</span></span><br><span class="line">            router.addRoutes(store.getters.addRouters) <span class="comment">// 动态添加可访问路由表</span></span><br><span class="line">            next(&#123; ...to, <span class="attr">replace</span>: <span class="literal">true</span> &#125;) <span class="comment">// hack方法 确保addRoutes已完成 ,set the replace: true so the navigation will not leave a history record</span></span><br><span class="line">          &#125;)</span><br><span class="line">        &#125;).catch(<span class="function">(<span class="params">err</span>) =&gt;</span> &#123;</span><br><span class="line">          store.dispatch(<span class="string">&#x27;FedLogOut&#x27;</span>).then(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">            Message.error(err || <span class="string">&#x27;Verification failed, please login again&#x27;</span>)</span><br><span class="line">            next(&#123; <span class="attr">path</span>: <span class="string">&#x27;/&#x27;</span> &#125;)</span><br><span class="line">          &#125;)</span><br><span class="line">        &#125;)</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// 没有动态改变权限的需求可直接next() 删除下方权限判断 ↓</span></span><br><span class="line">        <span class="keyword">if</span> (hasPermission(store.getters.roles, to.meta.roles)) &#123;</span><br><span class="line">          next()<span class="comment">//</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          next(&#123; <span class="attr">path</span>: <span class="string">&#x27;/401&#x27;</span>, <span class="attr">replace</span>: <span class="literal">true</span>, <span class="attr">query</span>: &#123; <span class="attr">noGoBack</span>: <span class="literal">true</span> &#125;&#125;)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">/* has no token 没有登陆*/</span></span><br><span class="line">    <span class="keyword">if</span> (whiteList.indexOf(to.path) !== -<span class="number">1</span>) &#123; <span class="comment">// 在免登录白名单，直接进入</span></span><br><span class="line">      next()</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      next(<span class="string">&#x27;/login&#x27;</span>) <span class="comment">// 否则全部重定向到登录页</span></span><br><span class="line">      NProgress.done() <span class="comment">// if current page is login will not trigger afterEach hook, so manually handle it</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">router.afterEach(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  NProgress.done() <span class="comment">// finish progress bar</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>缺点</p>
-<ul>
-<li>全局路由守卫里，每次路由跳转都要做判断。</li>
-<li>菜单信息写死在前端，要改显示文字或者权限，需要重新编译。</li>
-</ul>
-<h2 id="菜单权限"><a href="#菜单权限" class="headerlink" title="菜单权限"></a>菜单权限</h2><ol>
-<li><p>路由与菜但分离，菜单由后端返回。<br>没看懂啥意思</p>
-</li>
-<li><p>菜单和路由都由后端返回，前端统一定义路由组件。</p>
-</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Home = <span class="function">() =&gt;</span> <span class="keyword">import</span>(<span class="string">&quot;../pages/Home.vue&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> UserInfo = <span class="function">() =&gt;</span> <span class="keyword">import</span>(<span class="string">&quot;../pages/UserInfo.vue&quot;</span>);</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    home: Home,</span><br><span class="line">    userInfo: UserInfo</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>后端路由组件返回以下格式</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">        name: <span class="string">&quot;home&quot;</span>,</span><br><span class="line">        path: <span class="string">&quot;/&quot;</span>,</span><br><span class="line">        component: <span class="string">&quot;home&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        name: <span class="string">&quot;home&quot;</span>,</span><br><span class="line">        path: <span class="string">&quot;/userinfo&quot;</span>,</span><br><span class="line">        component: <span class="string">&quot;userInfo&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-<p>在后端返回的路由通过<code>addRoutes</code>动态挂在，需要将数据处理一下，将<code>component</code>字段换为真正的组件。</p>
-<p>缺点</p>
-<ul>
-<li>全局路由守卫里，每次跳转路由都要做判断</li>
-<li>前后端配合要求高</li>
-</ul>
-
-      
-
-      
-    </div>
-
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/03/19/Vue/vue-router%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/">展开全文 >></a>
         </p>
       
 

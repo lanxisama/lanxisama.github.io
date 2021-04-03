@@ -11,15 +11,15 @@
   <link rel="dns-prefetch" href="https://lanxisama.github.io">
   <title>桜抄的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="js中，参数传递只有一种规则:按值传递，基于值的复制。原始类型复制的是值本身，所以这两份数据互不影响；引用类型复制的是引用值，所以形参和实参指向同一个对象，通过一个饮用修改了对象，那么通过另外一个引用访问的对象就是修改后的对象 12345678910111213function c(a)&amp;#123;    &#x2F;&#x2F; a &#x3D; &amp;#123;1:2&amp;#125;    a.x &#x3D;12     &amp;#125;&#x2F;&#x2F;">
+  <meta name="description" content="避免样式文件的加载阻塞骨架屏的渲染Webpack 编译的 Vue 项目，会在 index.html 的  插入外链的样式文件，，这无疑会阻塞骨架屏的渲染。浏览器还提供了预加载机制，使用方法非常简单，只需将 rel&#x3D;”stylesheet” 改为 rel&#x3D;”preload”，浏览器会在空闲的时候加载并缓存，之后再使用就不用重复加载。 这看似无关的技术，在骨架屏的应用里将起到很大的作用，因为预加载的资">
 <meta property="og:type" content="article">
 <meta property="og:title" content="桜抄的博客">
-<meta property="og:url" content="https://lanxisama.github.io/2021/03/17/Vue/js%E5%80%BC%E4%BC%A0%E9%80%92/index.html">
+<meta property="og:url" content="https://lanxisama.github.io/2021/04/01/%E9%AA%A8%E6%9E%B6%E5%B1%8F/index.html">
 <meta property="og:site_name" content="桜抄的博客">
-<meta property="og:description" content="js中，参数传递只有一种规则:按值传递，基于值的复制。原始类型复制的是值本身，所以这两份数据互不影响；引用类型复制的是引用值，所以形参和实参指向同一个对象，通过一个饮用修改了对象，那么通过另外一个引用访问的对象就是修改后的对象 12345678910111213function c(a)&amp;#123;    &#x2F;&#x2F; a &#x3D; &amp;#123;1:2&amp;#125;    a.x &#x3D;12     &amp;#125;&#x2F;&#x2F;">
+<meta property="og:description" content="避免样式文件的加载阻塞骨架屏的渲染Webpack 编译的 Vue 项目，会在 index.html 的  插入外链的样式文件，，这无疑会阻塞骨架屏的渲染。浏览器还提供了预加载机制，使用方法非常简单，只需将 rel&#x3D;”stylesheet” 改为 rel&#x3D;”preload”，浏览器会在空闲的时候加载并缓存，之后再使用就不用重复加载。 这看似无关的技术，在骨架屏的应用里将起到很大的作用，因为预加载的资">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-03-17T08:50:29.072Z">
-<meta property="article:modified_time" content="2021-03-21T13:26:01.671Z">
+<meta property="article:published_time" content="2021-04-01T11:07:03.836Z">
+<meta property="article:modified_time" content="2021-04-01T11:07:05.291Z">
 <meta property="article:author" content="桜抄">
 <meta property="article:tag" content="javascript,前端开发,front-end,css,html,桜抄">
 <meta name="twitter:card" content="summary">
@@ -165,17 +165,16 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Vue/js值传递" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-骨架屏" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>js中，参数传递只有一种规则:按值传递，基于值的复制。原始类型复制的是值本身，所以这两份数据互不影响；引用类型复制的是引用值，所以形参和实参指向同一个对象，通过一个饮用修改了对象，那么通过另外一个引用访问的对象就是修改后的对象</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">c</span>(<span class="params">a</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// a = &#123;1:2&#125;</span></span><br><span class="line">    a.x =<span class="number">12</span></span><br><span class="line">     </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// let a1 = 12;</span></span><br><span class="line"><span class="keyword">let</span> a2 = &#123;<span class="string">&#x27;x&#x27;</span>:<span class="number">1</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// c(a1)</span></span><br><span class="line">c(a2)</span><br><span class="line"><span class="built_in">console</span>.log(a2)</span><br></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a= &#123;<span class="attr">x</span>:<span class="number">1</span>&#125;</span><br><span class="line"><span class="keyword">var</span> b = a</span><br><span class="line">a.x = a = &#123;<span class="attr">m</span>:<span class="number">1</span>&#125;</span><br><span class="line"><span class="built_in">console</span>.log(a,b)</span><br><span class="line"></span><br><span class="line"><span class="comment">//console </span></span><br><span class="line"></span><br><span class="line">a = &#123;<span class="attr">m</span>:<span class="number">1</span>&#125;</span><br><span class="line">b = &#123;<span class="attr">x</span>:&#123;<span class="attr">m</span>:<span class="number">1</span>&#125;&#125;</span><br></pre></td></tr></table></figure>
+        <p>避免样式文件的加载阻塞骨架屏的渲染<br>Webpack 编译的 Vue 项目，会在 index.html 的 <head> 插入外链的样式文件，<link ref="stylesheet" href="http://xxxx">，这无疑会阻塞骨架屏的渲染。浏览器还提供了预加载机制，使用方法非常简单，只需将 rel=”stylesheet” 改为 rel=”preload”，浏览器会在空闲的时候加载并缓存，之后再使用就不用重复加载。</p>
+<p>这看似无关的技术，在骨架屏的应用里将起到很大的作用，因为预加载的资源不会阻塞渲染.</p>
+<p>我们通过这种方式告诉浏览器，先不要管 app.xxx.css，直接渲染后续内容，在 app.xxx.css 文件加载完成之后，再将它重新设置为样式文件，如下代码所示：</p>
+<link rel="preload" href="/static/css/app.5be76b7d213b43df9723e8ab15122efb.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+方法的核心是通过改变 rel 让浏览器重新认定这个 <link> 标签是样式文件，这样既不阻塞骨架屏的渲染，也能正常应用外链样式文件。
       
 
       
@@ -234,7 +233,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://lanxisama.github.io/2021/03/17/Vue/js%E5%80%BC%E4%BC%A0%E9%80%92/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://lanxisama.github.io/2021/04/01/%E9%AA%A8%E6%9E%B6%E5%B1%8F/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -248,18 +247,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2021/03/19/Vue/vue-router%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2021/04/02/%E5%89%8D%E7%AB%AF%E9%9F%B3%E4%B9%90%E5%8F%AF%E8%A7%86%E5%8C%96/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          (no title)
+          前端音乐可视化
         
       </div>
     </a>
   
   
-    <a href="/2021/03/17/Vue/v-model%E7%9B%B8%E5%85%B3/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">v-model在VUE3中的变化</div>
+    <a href="/2021/04/01/new%20Object%E5%92%8CObject.create%E7%9A%84%E5%8C%BA%E5%88%AB/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">new Object和Object.create的区别</div>
       <i class="icon-circle-right"></i>
     </a>
   

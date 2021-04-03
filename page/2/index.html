@@ -165,17 +165,130 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-Vue/js值传递" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Vue/axios" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/19/Vue/axios/">axios</a>
+    </h1>
+  
+
+        
+        <a href="/2021/03/19/Vue/axios/" class="archive-article-date">
+  	<time datetime="2021-03-19T04:22:10.520Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-19</time>
+</a>
+        
+      </header>
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Axios取消请求"><a href="#Axios取消请求" class="headerlink" title="Axios取消请求"></a>Axios取消请求</h2><blockquote>
+<p>重复的<code>get</code>请求，会导致页面多次更新发生抖动。<br>重复的<code>post</code>请求，会导致服务器端生成两次记录。</p>
+</blockquote>
+        
+      
+
+      
+    </div>
+
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">axios</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Javascript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/19/Vue/axios/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+  
+    <article id="post-Vue/vue-router权限管理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>js中，参数传递只有一种规则:按值传递，基于值的复制。原始类型复制的是值本身，所以这两份数据互不影响；引用类型复制的是引用值，所以形参和实参指向同一个对象，通过一个饮用修改了对象，那么通过另外一个引用访问的对象就是修改后的对象</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">c</span>(<span class="params">a</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// a = &#123;1:2&#125;</span></span><br><span class="line">    a.x =<span class="number">12</span></span><br><span class="line">     </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// let a1 = 12;</span></span><br><span class="line"><span class="keyword">let</span> a2 = &#123;<span class="string">&#x27;x&#x27;</span>:<span class="number">1</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// c(a1)</span></span><br><span class="line">c(a2)</span><br><span class="line"><span class="built_in">console</span>.log(a2)</span><br></pre></td></tr></table></figure>
+        <h1 id="接口管理"><a href="#接口管理" class="headerlink" title="接口管理"></a>接口管理</h1><p><code>jwt</code></p>
+<h2 id="路由权限管理"><a href="#路由权限管理" class="headerlink" title="路由权限管理"></a>路由权限管理</h2><ol>
+<li>初始化时候挂在全部路由，并在路由上做权限信息。每次跳转前判断。</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> routerMap = [</span><br><span class="line">  &#123;</span><br><span class="line">    path: <span class="string">&#x27;/permission&#x27;</span>,</span><br><span class="line">    component: Layout,</span><br><span class="line">    redirect: <span class="string">&#x27;/permission/index&#x27;</span>,</span><br><span class="line">    alwaysShow: <span class="literal">true</span>, <span class="comment">// will always show the root menu</span></span><br><span class="line">    meta: &#123;</span><br><span class="line">      title: <span class="string">&#x27;permission&#x27;</span>,</span><br><span class="line">      icon: <span class="string">&#x27;lock&#x27;</span>,</span><br><span class="line">      roles: [<span class="string">&#x27;admin&#x27;</span>, <span class="string">&#x27;editor&#x27;</span>] <span class="comment">// you can set roles in root nav</span></span><br><span class="line">    &#125;,</span><br><span class="line">    children: [&#123;</span><br><span class="line">      path: <span class="string">&#x27;page&#x27;</span>,</span><br><span class="line">      component: <span class="function">() =&gt;</span> <span class="keyword">import</span>(<span class="string">&#x27;@/views/permission/page&#x27;</span>),</span><br><span class="line">      name: <span class="string">&#x27;pagePermission&#x27;</span>,</span><br><span class="line">      meta: &#123;</span><br><span class="line">        title: <span class="string">&#x27;pagePermission&#x27;</span>,</span><br><span class="line">        roles: [<span class="string">&#x27;admin&#x27;</span>] <span class="comment">// or you can only set roles in sub nav</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;, &#123;</span><br><span class="line">      path: <span class="string">&#x27;directive&#x27;</span>,</span><br><span class="line">      component: <span class="function">() =&gt;</span> <span class="keyword">import</span>(<span class="string">&#x27;@/views/permission/directive&#x27;</span>),</span><br><span class="line">      name: <span class="string">&#x27;directivePermission&#x27;</span>,</span><br><span class="line">      meta: &#123;</span><br><span class="line">        title: <span class="string">&#x27;directivePermission&#x27;</span></span><br><span class="line">        <span class="comment">// if do not set roles, means: this page does not require permission</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;]</span><br><span class="line">  &#125;]</span><br></pre></td></tr></table></figure>
+<p>缺点</p>
+<ul>
+<li>加载全部路由，如果用户很多都不能访问则会对性能有影响。</li>
+<li>全局路由守卫里，每次路由跳转都要做权限判断。</li>
+<li>菜单信息写死在前端，要改显示文字或者权限，需要重新编译。</li>
+</ul>
+<ol start="2">
+<li>初始化的时候只挂在不需要权限控制的路由，比如1登录页，404等。在用户登陆后，获取用户权限信息，筛选出有权限访问的路由，在全局路由守卫中调用<code>addRoutes</code>添加路由。</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> router <span class="keyword">from</span> <span class="string">&#x27;./router&#x27;</span></span><br><span class="line"><span class="keyword">import</span> store <span class="keyword">from</span> <span class="string">&#x27;./store&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; Message &#125; <span class="keyword">from</span> <span class="string">&#x27;element-ui&#x27;</span></span><br><span class="line"><span class="keyword">import</span> NProgress <span class="keyword">from</span> <span class="string">&#x27;nprogress&#x27;</span> <span class="comment">// progress bar</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;nprogress/nprogress.css&#x27;</span><span class="comment">// progress bar style</span></span><br><span class="line"><span class="keyword">import</span> &#123; getToken &#125; <span class="keyword">from</span> <span class="string">&#x27;@/utils/auth&#x27;</span> <span class="comment">// getToken from cookie</span></span><br><span class="line"></span><br><span class="line">NProgress.configure(&#123; <span class="attr">showSpinner</span>: <span class="literal">false</span> &#125;)<span class="comment">// NProgress Configuration</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// permission judge function</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hasPermission</span>(<span class="params">roles, permissionRoles</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (roles.indexOf(<span class="string">&#x27;admin&#x27;</span>) &gt;= <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">true</span> <span class="comment">// admin permission passed directly</span></span><br><span class="line">  <span class="keyword">if</span> (!permissionRoles) <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">  <span class="keyword">return</span> roles.some(<span class="function"><span class="params">role</span> =&gt;</span> permissionRoles.indexOf(role) &gt;= <span class="number">0</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> whiteList = [<span class="string">&#x27;/login&#x27;</span>, <span class="string">&#x27;/authredirect&#x27;</span>]<span class="comment">// no redirect whitelist</span></span><br><span class="line"></span><br><span class="line">router.beforeEach(<span class="function">(<span class="params">to, <span class="keyword">from</span>, next</span>) =&gt;</span> &#123;</span><br><span class="line">  NProgress.start() <span class="comment">// start progress bar</span></span><br><span class="line">  <span class="keyword">if</span> (getToken()) &#123; <span class="comment">// determine if there has token</span></span><br><span class="line">    <span class="comment">/* has token*/</span></span><br><span class="line">    <span class="keyword">if</span> (to.path === <span class="string">&#x27;/login&#x27;</span>) &#123;</span><br><span class="line">      next(&#123; <span class="attr">path</span>: <span class="string">&#x27;/&#x27;</span> &#125;)</span><br><span class="line">      NProgress.done() <span class="comment">// if current page is dashboard will not trigger	afterEach hook, so manually handle it</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (store.getters.roles.length === <span class="number">0</span>) &#123; <span class="comment">// 判断当前用户是否已拉取完user_info信息</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//主要就是以下方法</span></span><br><span class="line">        <span class="comment">//获取用户权限，找到有权访问的路由，生成路由表。</span></span><br><span class="line">        store.dispatch(<span class="string">&#x27;GetUserInfo&#x27;</span>).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123; <span class="comment">// 拉取user_info</span></span><br><span class="line">          <span class="keyword">const</span> roles = res.data.roles <span class="comment">// note: roles must be a array! such as: [&#x27;editor&#x27;,&#x27;develop&#x27;]</span></span><br><span class="line">          store.dispatch(<span class="string">&#x27;GenerateRoutes&#x27;</span>, &#123; roles &#125;).then(<span class="function">() =&gt;</span> &#123; <span class="comment">// 根据roles权限生成可访问的路由表</span></span><br><span class="line">            router.addRoutes(store.getters.addRouters) <span class="comment">// 动态添加可访问路由表</span></span><br><span class="line">            next(&#123; ...to, <span class="attr">replace</span>: <span class="literal">true</span> &#125;) <span class="comment">// hack方法 确保addRoutes已完成 ,set the replace: true so the navigation will not leave a history record</span></span><br><span class="line">          &#125;)</span><br><span class="line">        &#125;).catch(<span class="function">(<span class="params">err</span>) =&gt;</span> &#123;</span><br><span class="line">          store.dispatch(<span class="string">&#x27;FedLogOut&#x27;</span>).then(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">            Message.error(err || <span class="string">&#x27;Verification failed, please login again&#x27;</span>)</span><br><span class="line">            next(&#123; <span class="attr">path</span>: <span class="string">&#x27;/&#x27;</span> &#125;)</span><br><span class="line">          &#125;)</span><br><span class="line">        &#125;)</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// 没有动态改变权限的需求可直接next() 删除下方权限判断 ↓</span></span><br><span class="line">        <span class="keyword">if</span> (hasPermission(store.getters.roles, to.meta.roles)) &#123;</span><br><span class="line">          next()<span class="comment">//</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          next(&#123; <span class="attr">path</span>: <span class="string">&#x27;/401&#x27;</span>, <span class="attr">replace</span>: <span class="literal">true</span>, <span class="attr">query</span>: &#123; <span class="attr">noGoBack</span>: <span class="literal">true</span> &#125;&#125;)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">/* has no token 没有登陆*/</span></span><br><span class="line">    <span class="keyword">if</span> (whiteList.indexOf(to.path) !== -<span class="number">1</span>) &#123; <span class="comment">// 在免登录白名单，直接进入</span></span><br><span class="line">      next()</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      next(<span class="string">&#x27;/login&#x27;</span>) <span class="comment">// 否则全部重定向到登录页</span></span><br><span class="line">      NProgress.done() <span class="comment">// if current page is login will not trigger afterEach hook, so manually handle it</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">router.afterEach(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  NProgress.done() <span class="comment">// finish progress bar</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>缺点</p>
+<ul>
+<li>全局路由守卫里，每次路由跳转都要做判断。</li>
+<li>菜单信息写死在前端，要改显示文字或者权限，需要重新编译。</li>
+</ul>
+<h2 id="菜单权限"><a href="#菜单权限" class="headerlink" title="菜单权限"></a>菜单权限</h2><ol>
+<li><p>路由与菜但分离，菜单由后端返回。<br>没看懂啥意思</p>
+</li>
+<li><p>菜单和路由都由后端返回，前端统一定义路由组件。</p>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Home = <span class="function">() =&gt;</span> <span class="keyword">import</span>(<span class="string">&quot;../pages/Home.vue&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> UserInfo = <span class="function">() =&gt;</span> <span class="keyword">import</span>(<span class="string">&quot;../pages/UserInfo.vue&quot;</span>);</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    home: Home,</span><br><span class="line">    userInfo: UserInfo</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>后端路由组件返回以下格式</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">        name: <span class="string">&quot;home&quot;</span>,</span><br><span class="line">        path: <span class="string">&quot;/&quot;</span>,</span><br><span class="line">        component: <span class="string">&quot;home&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        name: <span class="string">&quot;home&quot;</span>,</span><br><span class="line">        path: <span class="string">&quot;/userinfo&quot;</span>,</span><br><span class="line">        component: <span class="string">&quot;userInfo&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>在后端返回的路由通过<code>addRoutes</code>动态挂在，需要将数据处理一下，将<code>component</code>字段换为真正的组件。</p>
+<p>缺点</p>
+<ul>
+<li>全局路由守卫里，每次跳转路由都要做判断</li>
+<li>前后端配合要求高</li>
+</ul>
 
-
-
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a= &#123;<span class="attr">x</span>:<span class="number">1</span>&#125;</span><br><span class="line"><span class="keyword">var</span> b = a</span><br><span class="line">a.x = a = &#123;<span class="attr">m</span>:<span class="number">1</span>&#125;</span><br><span class="line"><span class="built_in">console</span>.log(a,b)</span><br><span class="line"></span><br><span class="line"><span class="comment">//console </span></span><br><span class="line"></span><br><span class="line">a = &#123;<span class="attr">m</span>:<span class="number">1</span>&#125;</span><br><span class="line">b = &#123;<span class="attr">x</span>:&#123;<span class="attr">m</span>:<span class="number">1</span>&#125;&#125;</span><br></pre></td></tr></table></figure>
       
 
       
@@ -188,7 +301,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/03/17/Vue/js%E5%80%BC%E4%BC%A0%E9%80%92/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/03/19/Vue/vue-router%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/">展开全文 >></a>
         </p>
       
 
@@ -478,91 +591,6 @@
 
 
   
-    <article id="post-pwa/workerbox-test" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/02/02/pwa/workerbox-test/">WorkBox初探</a>
-    </h1>
-  
-
-        
-        <a href="/2021/02/02/pwa/workerbox-test/" class="archive-article-date">
-  	<time datetime="2021-02-02T13:19:39.219Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-02</time>
-</a>
-        
-      </header>
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a target="_blank" rel="noopener" href="https://lavas-project.github.io/pwa-book/chapter05/5-workbox.html">https://lavas-project.github.io/pwa-book/chapter05/5-workbox.html</a></p>
-
-      
-
-      
-    </div>
-
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">serviceWorker</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">PWA</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/02/02/pwa/workerbox-test/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-
-  
     <article id="post-pwa/what-is-service-work" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -669,8 +697,75 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>使用的JavaScript API ＃<br>使用诸如navigator.hardwareConcurrency，navigator.deviceMemory和navigator.connection之类的JavaScript API ，您可以分别获取有关设备CPU，内存和网络状态的信息。</p>
-        
+        <a id="more"></a>
+
+<p>使用的JavaScript API ＃<br>使用诸如navigator.hardwareConcurrency，navigator.deviceMemory和navigator.connection之类的JavaScript API ，您可以分别获取有关设备CPU，内存和网络状态的信息。</p>
+<!-- more -->
+
+<p>navigator.serviceWorker.oncontrollerchange</p>
+<pre><code>监听控制权变化？？用来监听sw更新？</code></pre>
+<p>navigator.online用来判断当前是否处于联网状态  </p>
+<p>缓存策略</p>
+<p>对不同资源使用不同缓存策略</p>
+<p>cache only:</p>
+<pre><code>所有资源都直接从缓存中获取返回，如果缓存中找不到则请求将失败。该模式假定资源之前已经被缓存，可能在Install期间就做了缓存，适用于静态资源</code></pre>
+<p>network only</p>
+<pre><code>只从网络返回，适用于前端用户行为日志打点之类的请求 坚决不缓存的 因为缓存可能影响时效性</code></pre>
+<p>cache falling back to network</p>
+<p> 先cache 失败了再从network</p>
+<p>network falling back to cache</p>
+<p>   network失败了在从cache获取 适用于频繁更新的内容</p>
+<p>cache network race</p>
+<pre><code>同时从cache和network获取，取最快响应的内容返回，应用场景较少。</code></pre>
+<p>cache ，then next</p>
+<p> 优先从cache，并同时从network获取最新内容，如果内容更新比较新，则更新缓存，并更新页面内容。UX实现难度大</p>
+<p>generic fallback</p>
+<p>优先从cache获取，如果cache没有则从网络获取，如果网络也不可用就返回cache中默认内容，适用于默认图片之类的场景</p>
+<p>注意事项</p>
+<pre><code>    避免http缓存service worker文件，另外浏览器对service worker文件最多只能缓存24h(超过时间无论如何都会从网络获取)(针对sw的响应头cache-control设置成no-cache）</code></pre>
+<p>避免缓存跨域资源：一种常见的做法是只缓存满足如下条件的结果：<br>响应状态码是200；避免缓存304，404，50x的结果<br>相应类型为basic或者cors即：只缓存同源，或者正确的跨域请求结果；避免缓存响应错误或不正确的跨域请求响应<br>3 注意存储空间</p>
+<pre><code>chrome 逐出策略是LRU
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+appshell概念
+
+导航栏 底部 内容 app的一个基础样子</code></pre>
+<p>APP SHELL 首屏加载优化 提前加载出应用的壳</p>
+<p>可以将appshell的内容写在入口文件中 包括nav footer等 。。。</p>
+<p>sw缓存app shell</p>
+<p>可以将index.html 入口文件 样式图表等静态资源加入到缓存中</p>
+<p>skeleton（骨架） 与appshell类似 </p>
+<p>app.js中</p>
+<pre><code>//显示骨架
+
+showSkeleton()</code></pre>
+<p>//获取数据</p>
+<p>await getData();</p>
+<p>//隐藏skeleton</p>
+<p>hideSkeleton()</p>
+<p>//渲染页面内容</p>
+<p>renderData()</p>
+<p>相关链接<br><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Cache">https://developer.mozilla.org/zh-CN/docs/Web/API/Cache</a><br><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/ExtendableEvent/waitUntil">https://developer.mozilla.org/zh-CN/docs/Web/API/ExtendableEvent/waitUntil</a></p>
+<p><a target="_blank" rel="noopener" href="https://developers.google.com/web/fundamentals/primers/service-workers/lifecycle?hl=zh-cn">https://developers.google.com/web/fundamentals/primers/service-workers/lifecycle?hl=zh-cn</a></p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903656811134984">https://juejin.cn/post/6844903656811134984</a></p>
+
       
 
       

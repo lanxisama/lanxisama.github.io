@@ -9,21 +9,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://lanxisama.github.io">
-  <title>WorkBox初探 | 桜抄的博客</title>
+  <title>前端音乐可视化 | 桜抄的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="https:&#x2F;&#x2F;lavas-project.github.io&#x2F;pwa-book&#x2F;chapter05&#x2F;5-workbox.html">
+  <meta name="description" content="AudioContext 获取音频数据 Web Audio是web短处理和分析音频的API，可以设置不同的音频来源（包括&lt;audio&gt;节点，ArrayBuffer，用户设备等），对音频添加音效，生成可视化图形等。  Web Audio在可视化中的作用 播放音频，获取frequencyData，根据这个绘制图形。  1.创建AudioContext12const AudioCont">
 <meta property="og:type" content="article">
-<meta property="og:title" content="WorkBox初探">
-<meta property="og:url" content="https://lanxisama.github.io/2021/02/02/pwa/workerbox-test/index.html">
+<meta property="og:title" content="前端音乐可视化">
+<meta property="og:url" content="https://lanxisama.github.io/2021/04/02/%E5%89%8D%E7%AB%AF%E9%9F%B3%E4%B9%90%E5%8F%AF%E8%A7%86%E5%8C%96/index.html">
 <meta property="og:site_name" content="桜抄的博客">
-<meta property="og:description" content="https:&#x2F;&#x2F;lavas-project.github.io&#x2F;pwa-book&#x2F;chapter05&#x2F;5-workbox.html">
+<meta property="og:description" content="AudioContext 获取音频数据 Web Audio是web短处理和分析音频的API，可以设置不同的音频来源（包括&lt;audio&gt;节点，ArrayBuffer，用户设备等），对音频添加音效，生成可视化图形等。  Web Audio在可视化中的作用 播放音频，获取frequencyData，根据这个绘制图形。  1.创建AudioContext12const AudioCont">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-02-02T13:19:39.219Z">
-<meta property="article:modified_time" content="2021-02-03T05:21:06.736Z">
+<meta property="article:published_time" content="2021-04-02T03:04:20.395Z">
+<meta property="article:modified_time" content="2021-04-02T03:35:37.660Z">
 <meta property="article:author" content="桜抄">
 <meta property="article:tag" content="JavaScript">
-<meta property="article:tag" content="serviceWorker">
-<meta property="article:tag" content="PWA">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="桜抄的博客" type="application/atom+xml">
@@ -167,20 +165,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-pwa/workerbox-test" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-前端音乐可视化" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      WorkBox初探
+      前端音乐可视化
     </h1>
   
 
         
-        <a href="/2021/02/02/pwa/workerbox-test/" class="archive-article-date">
-  	<time datetime="2021-02-02T13:19:39.219Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-02</time>
+        <a href="/2021/04/02/%E5%89%8D%E7%AB%AF%E9%9F%B3%E4%B9%90%E5%8F%AF%E8%A7%86%E5%8C%96/" class="archive-article-date">
+  	<time datetime="2021-04-02T03:04:20.395Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-02</time>
 </a>
         
       </header>
@@ -188,8 +186,36 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a target="_blank" rel="noopener" href="https://lavas-project.github.io/pwa-book/chapter05/5-workbox.html">https://lavas-project.github.io/pwa-book/chapter05/5-workbox.html</a></p>
+        <a id="more"></a>
 
+
+<h2 id="AudioContext-获取音频数据"><a href="#AudioContext-获取音频数据" class="headerlink" title="AudioContext 获取音频数据"></a>AudioContext 获取音频数据</h2><blockquote>
+<p>Web Audio是web短处理和分析音频的API，可以设置不同的音频来源（包括<code>&lt;audio&gt;</code>节点，ArrayBuffer，用户设备等），对音频添加音效，生成可视化图形等。</p>
+</blockquote>
+<h3 id="Web-Audio在可视化中的作用"><a href="#Web-Audio在可视化中的作用" class="headerlink" title="Web Audio在可视化中的作用"></a>Web Audio在可视化中的作用</h3><blockquote>
+<p>播放音频，获取frequencyData，根据这个绘制图形。</p>
+</blockquote>
+<h3 id="1-创建AudioContext"><a href="#1-创建AudioContext" class="headerlink" title="1.创建AudioContext"></a>1.创建AudioContext</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> AudioContext = <span class="built_in">window</span>.AudioContext || <span class="built_in">window</span>.webKitAudioContext;</span><br><span class="line"><span class="keyword">const</span> ctx = <span class="keyword">new</span> AudioContext();</span><br></pre></td></tr></table></figure>
+<h3 id="2-创建AnalyserNode"><a href="#2-创建AnalyserNode" class="headerlink" title="2.创建AnalyserNode"></a>2.创建AnalyserNode</h3><blockquote>
+<p>用于获取音频数据包括频率数据和时域数据</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> analyser = ctx.createAnalyser();</span><br><span class="line">analyser.fftSize = <span class="number">512</span>; <span class="comment">//这个参数是一个快速傅里叶参数 值为2的幂次方，数字越大结果越精确</span></span><br><span class="line"><span class="comment">//这个值决定了频率数据的长度</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-设置SourceNode"><a href="#3-设置SourceNode" class="headerlink" title="3.设置SourceNode"></a>3.设置SourceNode</h3><blockquote>
+<p>把音频节点关联到AudioContext上。<br>Web Audio种有三种类型源</p>
+</blockquote>
+<ul>
+<li>MediaElementAudioSourceNode 允许将<code>&lt;audio&gt;</code>节点直接作为输入，可做到流式播放。</li>
+<li>AudioBufferSourceNode 通过 xhr 预先将音频文件加载下来，再用 AudioContext 进行解码。</li>
+<li>MediaStreamAudioSourceNode 可以将用户的麦克风作为输入。即通过navigator.getUserMedia获取用户的音频或视频流后，生成音频源。</li>
+</ul>
+<h3 id="4-播放音频"><a href="#4-播放音频" class="headerlink" title="4.播放音频"></a>4.播放音频</h3><p>MediaElementAudioSourceNode 直接使用Play方法播放<br>AudioBufferSourceNode 需要调用start(0)播放</p>
+<h3 id="5。获取频率"><a href="#5。获取频率" class="headerlink" title="5。获取频率"></a>5。获取频率</h3><ol>
+<li>analyser.getByteFrequencyData 返回的是0-255的Uint8Array</li>
+<li>analyser.getFloatFrequencyData 返回的是0-22050的Float32Array</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> bufferLength = analyser.frequencyBinCount;</span><br><span class="line"><span class="keyword">const</span> dataArray = <span class="keyword">new</span> <span class="built_in">Uint8Array</span>(bufferLength);</span><br><span class="line"></span><br><span class="line">analyser.getByteFrequencyData(dataArray); <span class="comment">//对已有数组赋值，不返回新数组</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Canvas根据音频数据绘制"><a href="#Canvas根据音频数据绘制" class="headerlink" title="Canvas根据音频数据绘制"></a>Canvas根据音频数据绘制</h2>
       
 
       
@@ -204,14 +230,6 @@
 			 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">serviceWorker</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">PWA</a>
         		</li>
       		
 		</ul>
@@ -267,7 +285,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://lanxisama.github.io/2021/02/02/pwa/workerbox-test/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://lanxisama.github.io/2021/04/02/%E5%89%8D%E7%AB%AF%E9%9F%B3%E4%B9%90%E5%8F%AF%E8%A7%86%E5%8C%96/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -281,18 +299,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2021/03/04/chromeExtension/screenLook-summary/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          screenLook 开发总结
-        
-      </div>
-    </a>
   
-  
-    <a href="/2021/01/27/pwa/what-is-service-work/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Service Worker初探</div>
+    <a href="/2021/04/01/%E9%AA%A8%E6%9E%B6%E5%B1%8F/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -319,7 +328,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#AudioContext-%E8%8E%B7%E5%8F%96%E9%9F%B3%E9%A2%91%E6%95%B0%E6%8D%AE"><span class="toc-number">1.</span> <span class="toc-text">AudioContext 获取音频数据</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Web-Audio%E5%9C%A8%E5%8F%AF%E8%A7%86%E5%8C%96%E4%B8%AD%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-number">1.1.</span> <span class="toc-text">Web Audio在可视化中的作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%88%9B%E5%BB%BAAudioContext"><span class="toc-number">1.2.</span> <span class="toc-text">1.创建AudioContext</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%88%9B%E5%BB%BAAnalyserNode"><span class="toc-number">1.3.</span> <span class="toc-text">2.创建AnalyserNode</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E8%AE%BE%E7%BD%AESourceNode"><span class="toc-number">1.4.</span> <span class="toc-text">3.设置SourceNode</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%92%AD%E6%94%BE%E9%9F%B3%E9%A2%91"><span class="toc-number">1.5.</span> <span class="toc-text">4.播放音频</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%82%E8%8E%B7%E5%8F%96%E9%A2%91%E7%8E%87"><span class="toc-number">1.6.</span> <span class="toc-text">5。获取频率</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Canvas%E6%A0%B9%E6%8D%AE%E9%9F%B3%E9%A2%91%E6%95%B0%E6%8D%AE%E7%BB%98%E5%88%B6"><span class="toc-number">2.</span> <span class="toc-text">Canvas根据音频数据绘制</span></a></li></ol>
                     </div>
                 </span>
             </div>
