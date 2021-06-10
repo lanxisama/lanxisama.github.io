@@ -9,19 +9,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://lanxisama.github.io">
-  <title>桜抄的博客</title>
+  <title>javascripi用法 | 桜抄的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="排序  123456let a &#x3D; [2,3,5,6,1,4,7]a.forEach(n&#x3D;&gt;&amp;#123;    setTimeout(()&#x3D;&gt;console.log(n),n)&amp;#125;)&#x2F;&#x2F; 由于js异步特性和事件循环的处理方式等，可能有时失灵   var name  1234var name &#x3D; 任何值typeof window.name (typeof name) 都是str">
+  <meta name="description" content="排序  123456let a &#x3D; [2,3,5,6,1,4,7]a.forEach(n&#x3D;&gt;&amp;#123;    setTimeout(()&#x3D;&gt;console.log(n),n)&amp;#125;)&#x2F;&#x2F; 由于js异步特性和事件循环的处理方式等，可能有时失灵 123456789101112131415161718封装后function testA(a)&amp;#123;    let res &#x3D; [">
 <meta property="og:type" content="article">
-<meta property="og:title" content="桜抄的博客">
+<meta property="og:title" content="javascripi用法">
 <meta property="og:url" content="https://lanxisama.github.io/2021/03/26/%E5%A5%87%E5%A5%87%E6%80%AA%E6%80%AA/index.html">
 <meta property="og:site_name" content="桜抄的博客">
-<meta property="og:description" content="排序  123456let a &#x3D; [2,3,5,6,1,4,7]a.forEach(n&#x3D;&gt;&amp;#123;    setTimeout(()&#x3D;&gt;console.log(n),n)&amp;#125;)&#x2F;&#x2F; 由于js异步特性和事件循环的处理方式等，可能有时失灵   var name  1234var name &#x3D; 任何值typeof window.name (typeof name) 都是str">
+<meta property="og:description" content="排序  123456let a &#x3D; [2,3,5,6,1,4,7]a.forEach(n&#x3D;&gt;&amp;#123;    setTimeout(()&#x3D;&gt;console.log(n),n)&amp;#125;)&#x2F;&#x2F; 由于js异步特性和事件循环的处理方式等，可能有时失灵 123456789101112131415161718封装后function testA(a)&amp;#123;    let res &#x3D; [">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-03-26T09:16:15.479Z">
-<meta property="article:modified_time" content="2021-04-02T09:46:35.890Z">
+<meta property="article:modified_time" content="2021-05-21T08:51:23.414Z">
 <meta property="article:author" content="桜抄">
-<meta property="article:tag" content="javascript,前端开发,front-end,css,html,桜抄">
+<meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="桜抄的博客" type="application/atom+xml">
@@ -73,7 +73,7 @@
 			</ul>
 		</nav>
 		<nav>
-			总文章数 23
+			总文章数 25
 		</nav>
 		<nav class="header-smart-menu">
     		
@@ -168,17 +168,38 @@
             <article id="post-奇奇怪怪" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      javascripi用法
+    </h1>
+  
+
+        
+        <a href="/2021/03/26/%E5%A5%87%E5%A5%87%E6%80%AA%E6%80%AA/" class="archive-article-date">
+  	<time datetime="2021-03-26T09:16:15.479Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-26</time>
+</a>
+        
+      </header>
+
+    
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
 <p>排序</p>
 </blockquote>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = [<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">1</span>,<span class="number">4</span>,<span class="number">7</span>]</span><br><span class="line"></span><br><span class="line">a.forEach(<span class="function"><span class="params">n</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">()=&gt;</span><span class="built_in">console</span>.log(n),n)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 由于js异步特性和事件循环的处理方式等，可能有时失灵</span></span><br></pre></td></tr></table></figure>
-
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">封装后</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">testA</span>(<span class="params">a</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> res = [];</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;a&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve,reject</span>)=&gt;</span>&#123;</span><br><span class="line">        a.forEach(<span class="function"><span class="params">n</span>=&gt;</span>&#123;</span><br><span class="line">            <span class="built_in">setTimeout</span>(<span class="function">()=&gt;</span>&#123;</span><br><span class="line">                <span class="comment">//数值最大的 一定最后完成</span></span><br><span class="line">                <span class="keyword">if</span>(n === <span class="built_in">Math</span>.max.apply(<span class="literal">null</span>,a))&#123;</span><br><span class="line">                    resolve(res)</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                res.push(n);</span><br><span class="line">            &#125;,n)</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>var name</p>
 </blockquote>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = 任何值</span><br><span class="line"><span class="keyword">typeof</span> <span class="built_in">window</span>.name (<span class="keyword">typeof</span> name) 都是string</span><br><span class="line"></span><br><span class="line">因为name是<span class="built_in">window</span>上的全局属性</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&#x27;root&#x27;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="built_in">console</span>.log(root) <span class="comment">//可以直接获取dom对象</span></span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>由于浏览器演进的历史原因，创建带有id属性的dom元素时也会在全局创建同名全局变量</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">get</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line"><span class="comment">//这样传入也可以执行 方便传参</span></span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="string">&#x27;get()&#x27;</span>,<span class="number">100</span>)</span><br></pre></td></tr></table></figure>
       
 
       
@@ -187,6 +208,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       

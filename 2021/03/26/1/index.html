@@ -11,15 +11,15 @@
   <link rel="dns-prefetch" href="https://lanxisama.github.io">
   <title>桜抄的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="桜抄的前端开发博客">
+  <meta name="description" content="&#x2F;&#x2F;防抖节流 &#x2F;&#x2F;函数柯里化 &#x2F;&#x2F;promise All &#x2F;&#x2F;合并Promsie &#x2F;&#x2F;async await  &#x2F;&#x2F;防抖 function fangdou(fn,del&#x3D;200){     let timer;     let that &#x3D; this;     return function(){         if(timer){             clearTimeout(timer)">
 <meta property="og:type" content="article">
 <meta property="og:title" content="桜抄的博客">
 <meta property="og:url" content="https://lanxisama.github.io/2021/03/26/1/index.html">
 <meta property="og:site_name" content="桜抄的博客">
-<meta property="og:description" content="桜抄的前端开发博客">
+<meta property="og:description" content="&#x2F;&#x2F;防抖节流 &#x2F;&#x2F;函数柯里化 &#x2F;&#x2F;promise All &#x2F;&#x2F;合并Promsie &#x2F;&#x2F;async await  &#x2F;&#x2F;防抖 function fangdou(fn,del&#x3D;200){     let timer;     let that &#x3D; this;     return function(){         if(timer){             clearTimeout(timer)">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-03-26T09:47:59.308Z">
-<meta property="article:modified_time" content="2021-04-01T06:11:59.928Z">
+<meta property="article:modified_time" content="2021-05-24T09:01:16.592Z">
 <meta property="article:author" content="桜抄">
 <meta property="article:tag" content="javascript,前端开发,front-end,css,html,桜抄">
 <meta name="twitter:card" content="summary">
@@ -73,7 +73,7 @@
 			</ul>
 		</nav>
 		<nav>
-			总文章数 23
+			总文章数 25
 		</nav>
 		<nav class="header-smart-menu">
     		
@@ -170,7 +170,90 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        //防抖节流
+//函数柯里化
+//promise All
+//合并Promsie
+//async await
+
+//防抖
+function fangdou(fn,del=200){
+    let timer;
+    let that = this;
+    return function(){
+        if(timer){
+            clearTimeout(timer)
+        }
+        timer = setTimeout(()=>{
+            fn.call(that)
+        },del);
+    }
+}
+
+//节流
+function jieliu(fn,del=200){
+    let timer;
+    let last = +new Date();
+    let that = this;
+    return function(){
+        let now = +new Date();
+        if(now - last<200 && timer){
+                clearTimeout(timer)
+                timer = setTimeout(()=>{
+                    fn.call(that);
+                },del)
+        }else{
+            fn.call(that)
+        }
+        last = now;
+    }
+}
+
+//promise All 
+//Promise.all([p1,p2,p3]);
+Promise.myall = function(arr){
+    let resultArr = [];
+    let resultNum = 0;
+    return new Promise(function(resolve,reject){
+        for(let i = 0;i<arr.length;i++){
+            Promise.resolve(arr[i]).then(res=>{
+                resultArr.push(res);
+                resultNum += 1;
+                if(resultNum == arr.length){
+                   return resolve(resultArr);
+                }
+            }).catch(err=>{
+                return reject(err)
+            })
+        }
+    })
+}
+
+function setPromise(){
+    return new Promise((resolve,reject)=>{
+        let random = Math.floor(Math.random()*10);
+        if(random<3){
+            reject(random)
+        }else{
+            resolve(random)
+        }
+    })
+}
+
+Promise.myall([setPromise(),setPromise(),setPromise()]).then(res=>{
+    console.log('resolve',res)
+}).catch((e)=>{
+    console.log('reject',e)
+})
+
+
+let map = new Map()
+map.set('a',1)
+map.set('b',12)
+map.set('e',12)
+console.log([...map])
+
+  
       
 
       
@@ -254,7 +337,7 @@
   
   
     <a href="/2021/03/26/%E5%A5%87%E5%A5%87%E6%80%AA%E6%80%AA/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title"></div>
+      <div class="article-nav-title">javascripi用法</div>
       <i class="icon-circle-right"></i>
     </a>
   

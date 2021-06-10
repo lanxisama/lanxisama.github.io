@@ -9,25 +9,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://lanxisama.github.io">
-  <title>Service Worker初探 | 桜抄的博客</title>
+  <title>js类型转换 | 桜抄的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="什么是ServiceWorkerService Worker本质上充当Web应用程序，浏览器与网络（可用时）之间的代理服务器。这个API旨在创建有效的离线体验。它在拦截请求并根据网络是否可用来采取适当动作、更新来自服务器的资源。Service Woker运行在worker上下文，因此不访问DOM。它设计为完全异步。因此同步API(XHR和localStorage)在service worker中不">
+  <meta name="description" content="js类型转换">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Service Worker初探">
-<meta property="og:url" content="https://lanxisama.github.io/2021/01/27/pwa/what-is-service-work/index.html">
+<meta property="og:title" content="js类型转换">
+<meta property="og:url" content="https://lanxisama.github.io/2021/05/25/js%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/index.html">
 <meta property="og:site_name" content="桜抄的博客">
-<meta property="og:description" content="什么是ServiceWorkerService Worker本质上充当Web应用程序，浏览器与网络（可用时）之间的代理服务器。这个API旨在创建有效的离线体验。它在拦截请求并根据网络是否可用来采取适当动作、更新来自服务器的资源。Service Woker运行在worker上下文，因此不访问DOM。它设计为完全异步。因此同步API(XHR和localStorage)在service worker中不">
+<meta property="og:description" content="js类型转换">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://s3.ax1x.com/2021/01/27/szI6Zq.png">
-<meta property="og:image" content="https://s3.ax1x.com/2021/01/27/szIXWD.png">
-<meta property="article:published_time" content="2021-01-27T13:05:53.218Z">
-<meta property="article:modified_time" content="2021-02-03T05:21:04.503Z">
+<meta property="article:published_time" content="2021-05-25T05:54:19.282Z">
+<meta property="article:modified_time" content="2021-06-10T10:41:10.737Z">
 <meta property="article:author" content="桜抄">
 <meta property="article:tag" content="JavaScript">
-<meta property="article:tag" content="serviceWorker">
-<meta property="article:tag" content="PWA">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://s3.ax1x.com/2021/01/27/szI6Zq.png">
   
     <link rel="alternative" href="/atom.xml" title="桜抄的博客" type="application/atom+xml">
   
@@ -170,20 +165,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-pwa/what-is-service-work" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-js类型转换" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Service Worker初探
+      js类型转换
     </h1>
   
 
         
-        <a href="/2021/01/27/pwa/what-is-service-work/" class="archive-article-date">
-  	<time datetime="2021-01-27T13:05:53.218Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-27</time>
+        <a href="/2021/05/25/js%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/" class="archive-article-date">
+  	<time datetime="2021-05-25T05:54:19.282Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-25</time>
 </a>
         
       </header>
@@ -191,110 +186,43 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="什么是ServiceWorker"><a href="#什么是ServiceWorker" class="headerlink" title="什么是ServiceWorker"></a>什么是ServiceWorker</h1><p>Service Worker本质上充当Web应用程序，浏览器与网络（可用时）之间的代理服务器。这个API旨在创建有效的离线体验。它在拦截请求并根据网络是否可用来采取适当动作、更新来自服务器的资源。<br>Service Woker运行在worker上下文，因此不访问DOM。它设计为完全异步。因此同步API(XHR和localStorage)在service worker中不能使用。<br>出于安全考虑，Service workers只能在https，localhost下使用。</p>
-<a id="more"></a>
+        <h1 id="js类型转换"><a href="#js类型转换" class="headerlink" title="js类型转换"></a>js类型转换</h1><a id="more"></a>
 
-<h1 id="注册流程以及作用域"><a href="#注册流程以及作用域" class="headerlink" title="注册流程以及作用域"></a>注册流程以及作用域</h1><p>在首次使用是需要注册一个service worker。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//index.html</span></span><br><span class="line"><span class="keyword">if</span>(navigator.serviceWorker!=<span class="literal">null</span>)&#123;</span><br><span class="line">    navigator.serviceWorker.register(<span class="string">&#x27;/sw.js&#x27;</span>,&#123;<span class="attr">scope</span>:<span class="string">&#x27;/&#x27;</span>&#125;).then(<span class="function"><span class="params">registration</span>=&gt;</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;作用域&#x27;</span>,registration.scope )</span><br><span class="line">    &#125;).catch(<span class="function"><span class="params">err</span>=&gt;</span>err)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>sw.js的path和scope的关系：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">navigator.serviceWorker.register(<span class="string">&#x27;/sw.js&#x27;</span>,&#123;<span class="attr">scope</span>:<span class="string">&#x27;/&#x27;</span>&#125;) <span class="comment">//可以注册成功</span></span><br><span class="line">navigator.serviceWorker.register(<span class="string">&#x27;/sw.js&#x27;</span>,&#123;<span class="attr">scope</span>:<span class="string">&#x27;/foo&#x27;</span>&#125;) <span class="comment">//可以注册成功</span></span><br><span class="line">navigator.serviceWorker.register(<span class="string">&#x27;/foo/sw.js&#x27;</span>,&#123;<span class="attr">scope</span>:<span class="string">&#x27;/&#x27;</span>&#125;) <span class="comment">//注册失败</span></span><br></pre></td></tr></table></figure>
-<p>scope的路径只能比sw.js所在的路径更深或者同级，才可以注册成功。<br>利用Service-Worker-Allowed可以设置指定路径最高的scope。</p>
-<h1 id="作用域污染"><a href="#作用域污染" class="headerlink" title="作用域污染"></a>作用域污染</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">页面A：https:&#x2F;&#x2F;www.test.com&#x2F;a </span><br><span class="line">    &#123;scope:&#39;&#x2F;a&#39;&#125;</span><br><span class="line">    &#x2F;a&#x2F;sw.js</span><br><span class="line">页面B：https:&#x2F;&#x2F;www.test.com&#x2F;a&#x2F;b</span><br><span class="line">    &#123;scope:&#39;&#x2F;a&#x2F;b&#39;&#125;</span><br><span class="line">    &#x2F;a&#x2F;b&#x2F;sw-1.js</span><br></pre></td></tr></table></figure>
-<p>这样页面A的sw.js也会作用在B页面下。<br>但是B页面也有自身的sw。这样sw虽然不会报错，可以注册成功，但是使用时会出现一些问题。</p>
-<p>在项目架构层面需要考虑下。</p>
-<h1 id="首次加载-Service-Worker"><a href="#首次加载-Service-Worker" class="headerlink" title="首次加载 Service Worker"></a>首次加载 Service Worker</h1><p><a target="_blank" rel="noopener" href="https://imgchr.com/i/szI6Zq"><img src="https://s3.ax1x.com/2021/01/27/szI6Zq.png" alt="首次加载时生命周期"></a></p>
-<p>Install阶段</p>
-<ol>
-<li>install事件时servie worker获取的第一个事件，并且只发生一次。</li>
-<li>传递到installEvent.waitUntil()的一个Promise表明安装的持续时间以及安装是否成功。</li>
-<li>在完全安装并处于活动状态之前，service worker不会收到fetch和push等事件。</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> cacheKey = <span class="string">&#x27;cache-v-1&#x27;</span>; <span class="comment">//一个cache的key值 用来区分缓存</span></span><br><span class="line"><span class="keyword">var</span> cacheList = [</span><br><span class="line">    <span class="string">&#x27;/&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;index.html&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;main.css&#x27;</span></span><br><span class="line">]  <span class="comment">//需要缓存的静态资源 在install进行缓存</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>在 Service Worker 当中会用到一些全局变量:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">self: 表示 Service Worker 作用域, 也是全局变量</span><br><span class="line">caches: 表示缓存</span><br><span class="line">skipWaiting: 表示强制当前处在 waiting 状态的脚本进入 activate 状态</span><br><span class="line">clients: 表示 Service Worker 接管的页面</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">self.addEventListener(<span class="string">&quot;install&quot;</span>,<span class="function"><span class="keyword">function</span>(<span class="params">installEvent</span>)</span>&#123;</span><br><span class="line">    installEvent.waitUntil(</span><br><span class="line">        caches.open(cacheKey).then(<span class="function">(<span class="params">cache</span>)=&gt;</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> cache.addAll(cacheList)</span><br><span class="line">        &#125;).then(<span class="function">()=&gt;</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> self.skipWaiting(); <span class="comment">//有新的sw注册时直接跳过waiting阶段。</span></span><br><span class="line">        &#125;)</span><br><span class="line">    )</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// installEvent.waitUntil只有传进去的promise状态是resolve，才代表安装成功。</span></span><br></pre></td></tr></table></figure>
-<p>Activate阶段</p>
-<blockquote>
-<p>在您的Service Worker准备控制客户端并处理push和sync等功能事件，您将获得一个activate事件。但这不意味这你调用register的页面将受控制。</p>
+<h2 id="基础类型"><a href="#基础类型" class="headerlink" title="基础类型"></a>基础类型</h2><blockquote>
+<p>typeof 运算符可以对js中6种基础类型进行判断</p>
 </blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">self.addEventListener(<span class="string">&#x27;activate&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;Activate event&#x27;</span>)</span><br><span class="line">  <span class="comment">//首次加载sw之前 页面是没有被sw控制的。</span></span><br><span class="line">  <span class="comment">//不是完全控制权的话，只能作用于在打开之后注册的页面</span></span><br><span class="line">  <span class="comment">//1.sw注册之后，页面要重新加载才能让sw获取完全控制 否则不能进行拦截请求</span></span><br><span class="line">  <span class="comment">//self.clients.claim() 让当前sw获取到完全控制权 相当于跳过1.步骤</span></span><br><span class="line">  e.waitUntil(</span><br><span class="line">    <span class="built_in">Promise</span>.all(</span><br><span class="line">      [</span><br><span class="line">        self.clients.claim(),</span><br><span class="line">        caches.keys().then(<span class="function"><span class="params">cacheNames</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> cacheNames.map(<span class="function"><span class="params">name</span> =&gt;</span> &#123;</span><br><span class="line">          <span class="keyword">if</span> (name !== cacheStorageKey) &#123;</span><br><span class="line">            <span class="comment">//如果缓存条件不匹配就直接舍弃</span></span><br><span class="line">            <span class="keyword">return</span> caches.delete(name)</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;)</span><br><span class="line">      ]).then(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">&#x27;Clients claims.&#x27;</span>)</span><br><span class="line">      <span class="keyword">return</span> self.clients.claim()</span><br><span class="line">    &#125;)</span><br><span class="line">  )</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p><a target="_blank" rel="noopener" href="https://developers.google.com/web/fundamentals/primers/service-workers/lifecycle?hl=zh-cn">详细内容</a></p>
-<h1 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h1><blockquote>
-<p>Service Worker无论如何最多只能缓存24小时，即使设置了更久的时间也不会有作用。<br>以下情况会触发更新：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typeof</span> <span class="number">10</span> <span class="comment">//number</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="string">&#x27;hello&#x27;</span>  <span class="comment">//string</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="literal">false</span> <span class="comment">//boolean</span></span><br><span class="line"><span class="keyword">typeof</span> &#123;<span class="attr">v</span>:<span class="number">12</span>&#125; <span class="comment">//object</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="literal">undefined</span> <span class="comment">//undefined</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="built_in">Symbol</span>() <span class="comment">//symbol</span></span><br></pre></td></tr></table></figure>
+<h3 id="特殊的"><a href="#特殊的" class="headerlink" title="特殊的"></a>特殊的</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typeof</span> <span class="literal">null</span> <span class="comment">//object</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="literal">NaN</span> <span class="comment">//number</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="literal">Infinity</span> <span class="comment">//number</span></span><br></pre></td></tr></table></figure>
+<h2 id="instanceof和原型链"><a href="#instanceof和原型链" class="headerlink" title="instanceof和原型链"></a>instanceof和原型链</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">object <span class="keyword">instanceof</span> <span class="title">constructor</span> //判断<span class="title">object</span>是不是<span class="title">constructor</span>构造函数实例化的对象</span><br></pre></td></tr></table></figure>
+<h2 id="js中的类型转换"><a href="#js中的类型转换" class="headerlink" title="js中的类型转换"></a>js中的类型转换</h2><h3 id="数学运算符中的类型转换"><a href="#数学运算符中的类型转换" class="headerlink" title="数学运算符中的类型转换"></a>数学运算符中的类型转换</h3><blockquote>
+<p>在对各种非<code>Number</code>类型运用数学运算符时，会先将非<code>Number</code>转换成<code>Number</code>类型</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> - <span class="literal">true</span> <span class="comment">// 0， 首先把 true 转换为数字 1， 然后执行 1 - 1</span></span><br><span class="line"><span class="number">1</span> - <span class="literal">null</span> <span class="comment">// 1,  首先把 null 转换为数字 0， 然后执行 1 - 0</span></span><br><span class="line"><span class="number">1</span> * <span class="literal">undefined</span> <span class="comment">//  NaN, undefined 转换为数字是 NaN</span></span><br><span class="line"><span class="number">2</span> * [<span class="string">&#x27;5&#x27;</span>] <span class="comment">//  10， [&#x27;5&#x27;]首先会变成 &#x27;5&#x27;, 然后再变成数字 5</span></span><br></pre></td></tr></table></figure>
+<h3 id="加法的特殊性"><a href="#加法的特殊性" class="headerlink" title="加法的特殊性"></a>加法的特殊性</h3><blockquote>
+<p>因为js中<code>+</code>可以进行字符串拼接，所以存在特殊性,下面三条转换规则优先级从上到下依次：</p>
 </blockquote>
 <ul>
-<li>导航到一个作用域内的页面。(A navigation to an in-scope page.)</li>
-<li>更新push和sync等功能事件。除非在24小时内进行了更新检查。(A functional events such as push and sync, unless there’s been an update check within the previous 24 hours.)</li>
-<li>只有在Service WorkerURL发生变化时才调用.register()。但是，你应该避免改变worker的URL。(Calling .register() only if the service worker URL has changed. However, you should avoid changing the worker URL.)</li>
+<li>当一侧为<code>String</code>类型时候，被识别为字符串拼接，并优先将另一侧转换为字符串类型。</li>
+<li>当一侧为<code>Number</code>类型，另一侧为原始类型，则将原始类型转化为<code>Number</code>类型。</li>
+<li>当一侧为<code>Number</code>类型，另一侧为引用类型，将引用类型和<code>Number</code>类型转换成字符串后拼接。</li>
 </ul>
-<blockquote>
-<p>如果浏览器已有的service worker和你的service worker有字节上的区别，则考虑更新service worker。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">123</span> + <span class="string">&#x27;123&#x27;</span>  <span class="comment">// 规则一 &#x27;123123&#x27;</span></span><br><span class="line"><span class="number">123</span> + <span class="literal">null</span>  <span class="comment">// 规则二 null转换成 0  结果是 123</span></span><br><span class="line"><span class="number">123</span> + <span class="literal">true</span>  <span class="comment">//规则二 true转换成1 结果是124</span></span><br><span class="line"><span class="number">213</span> + [<span class="string">&#x27;c&#x27;</span>,<span class="number">1</span>,<span class="string">&#x27;a&#x27;</span>] <span class="comment">//规则三 &quot;213c,1,a&quot;</span></span><br><span class="line"><span class="number">123</span> + &#123;&#125;  <span class="comment">// 规则三 123和&#123;&#125;全部转换成字符串 结果是 &#x27;123[object Object]</span></span><br></pre></td></tr></table></figure>
+<h2 id="逻辑判断中的类型转换"><a href="#逻辑判断中的类型转换" class="headerlink" title="逻辑判断中的类型转换"></a>逻辑判断中的类型转换</h2><h3 id="单个变量"><a href="#单个变量" class="headerlink" title="单个变量"></a>单个变量</h3><blockquote>
+<p>如果只有单个变量，会优先将其转换成<code>Boolean</code>值</p>
 </blockquote>
-<blockquote>
-<p>更新的service worker和现有的service worker一起启动，并获取自己的install事件。<br>如果新service worker中出现不正常状态代码（比如404）、解析失败。在执行中引发错误或在安装期间被拒，则系统会舍弃新的service worker，但不会影响当前处于活动状态的worker。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">null</span>,<span class="literal">undefined</span>,<span class="string">&#x27;&#x27;</span>,<span class="literal">NaN</span>,<span class="number">0</span>,<span class="literal">false</span>转换都是<span class="literal">false</span>，其余的比如&#123;&#125;,[]等都是<span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<h3 id="判断的五条规则"><a href="#判断的五条规则" class="headerlink" title="==判断的五条规则"></a>==判断的五条规则</h3><ul>
+<li>NaN和任何类型值比较都是false，包括他自己<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">NaN</span> == <span class="literal">NaN</span> <span class="comment">//false</span></span><br></pre></td></tr></table></figure></li>
+<li>Boolean和其他任何类型比较，Boolean首先被转换成Numebr<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">true</span> == <span class="number">1</span>  <span class="comment">// true </span></span><br><span class="line"><span class="literal">true</span> == <span class="string">&#x27;2&#x27;</span>  <span class="comment">// false, 先把 true 变成 1，而不是把 &#x27;2&#x27; 变成 true</span></span><br><span class="line"><span class="literal">true</span> == [<span class="string">&#x27;1&#x27;</span>]  <span class="comment">// true, 先把 true 变成 1， [&#x27;1&#x27;]拆箱成 &#x27;1&#x27;, 再参考规则3</span></span><br><span class="line"><span class="literal">true</span> == [<span class="string">&#x27;2&#x27;</span>]  <span class="comment">// false, 同上</span></span><br><span class="line"><span class="literal">undefined</span> == <span class="literal">false</span> <span class="comment">// false ，首先 false 变成 0，然后参考规则4</span></span><br><span class="line"><span class="literal">null</span> == <span class="literal">false</span> <span class="comment">// false，同上</span></span><br></pre></td></tr></table></figure></li>
+<li>String和Number比较时，先将String转换成Number<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">123</span> = <span class="string">&#x27;123&#x27;</span> <span class="comment">// true &#x27;123&#x27;会先变成123</span></span><br><span class="line"><span class="string">&#x27;&#x27;</span> == <span class="number">0</span> <span class="comment">// true</span></span><br></pre></td></tr></table></figure></li>
+<li>仅有<code>null == undefined</code>是true，除此之外，null、undefined和其他任何结果比较的值都是false<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">null</span> == <span class="literal">undefined</span> <span class="comment">// true</span></span><br><span class="line"><span class="literal">null</span> == <span class="string">&#x27;&#x27;</span> <span class="comment">// false</span></span><br><span class="line"><span class="literal">null</span> == <span class="number">0</span> <span class="comment">// false</span></span><br><span class="line"><span class="literal">null</span> == <span class="literal">false</span> <span class="comment">// false</span></span><br><span class="line"><span class="literal">undefined</span> == <span class="string">&#x27;&#x27;</span> <span class="comment">// false</span></span><br><span class="line"><span class="literal">undefined</span> == <span class="number">0</span> <span class="comment">// false</span></span><br><span class="line"><span class="literal">undefined</span> == <span class="literal">false</span> <span class="comment">// false</span></span><br></pre></td></tr></table></figure></li>
+<li>原始类型和引用类型做比较时，引用类型会依照ToPrimitive规则转换成原始类型<blockquote>
+<p>ToPrimitive规则，是引用类型向原始类型转变的规则，它遵循先valueOf后toString的模式期望得到一个原始类型，如果还没办法得到一个原始类型，则会报错。</p>
 </blockquote>
-<blockquote>
-<p>新的worker安装后会进入等待状态，直到现有worker控制0个客户端。利用self.skipWaiting()跳过等待。</p>
-</blockquote>
-<p><a target="_blank" rel="noopener" href="https://imgchr.com/i/szIXWD"><img src="https://s3.ax1x.com/2021/01/27/szIXWD.png" alt="更新时生命周期"></a></p>
-<p>在sw更新时，新的sw在注册安装之后会处于waiting状态，此时可以调用self.skipWaiting函数来跳过等待。</p>
-<h1 id="Fecth"><a href="#Fecth" class="headerlink" title="Fecth"></a>Fecth</h1><p>因为在Service Worker环境下xhr是没办法使用的，w3c引入了一个新的fetch api。fetch api与XMLHttpRequest最大的不同：</p>
-<ol>
-<li>fetch()返回的是一个Promise对象。可以通过then进行连续调用，减少嵌套。</li>
-<li>提供了Request和Response对象。有了service worker，就可以在拦截到请求之后，根据自己许需要返回自己的响应。</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">self.addEventListener(<span class="string">&#x27;fetch&#x27;</span>,<span class="function"><span class="keyword">function</span>(<span class="params">FetchEvent</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">new</span> URL(FetchEvent.request.url).origin != self.origin)&#123;</span><br><span class="line">      <span class="comment">//判断请求的资源和sw是否是同源。为了安全考虑，非同源的可能不会被缓存</span></span><br><span class="line">      <span class="keyword">return</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//返回一个状态时resolve的response对象或者network error。</span></span><br><span class="line">    FetchEvent.respondWith(</span><br><span class="line">        fetch(FetchEvent.request).catch(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> caches.match(FetchEvent.request);</span><br><span class="line">        &#125;)</span><br><span class="line">    );</span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>F<br>[FetchEvent文档][<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/FetchEvent]">https://developer.mozilla.org/zh-CN/docs/Web/API/FetchEvent]</a></p>
-<h1 id="Message"><a href="#Message" class="headerlink" title="Message"></a>Message</h1><blockquote>
-<p>页面和service worker间通过postMessage()方法来发送消息。发送的消息可以被message事件接收到。</p>
-</blockquote>
-<h1 id="改进"><a href="#改进" class="headerlink" title="改进"></a>改进</h1><p>我们考虑在用户首次访问网页应用，此时还没有service worker。浏览器无法知道是否最终要安装service worker。<br>如果实在性能相对不足的设备上打开页面，那么就会产生一个额外线程加剧对CPU时间和内存的竞争。从而影响到浏览器渲染。</p>
-<blockquote>
-<p>为确保延迟服务工作线程的初始注册直到第一个页面已加载，注册的代码改进为：</p>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//index.html</span></span><br><span class="line"><span class="keyword">if</span> (<span class="string">&#x27;serviceWorker&#x27;</span> <span class="keyword">in</span> navigator) &#123;</span><br><span class="line">  <span class="built_in">window</span>.addEventListener(<span class="string">&#x27;load&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    navigator.serviceWorker.register(<span class="string">&#x27;/service-worker.js&#x27;</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h1 id="缓存策略"><a href="#缓存策略" class="headerlink" title="缓存策略"></a>缓存策略</h1><blockquote>
-<p>对不同资源使用不同缓存策略</p>
-</blockquote>
-<ol>
-<li><code>cache only</code>:<br> 所有资源都直接从缓存中获取返回，如果缓存中找不到则请求将失败。该模式假定资源之前已经被缓存，可能在Install期间就做了缓存，适用于静态资源</li>
-</ol>
-<ol start="2">
-<li><code>network only</code><br> 只从网络返回，适用于前端用户行为日志打点之类的请求 坚决不缓存的 因为缓存可能影响时效性</li>
-</ol>
-<ol start="3">
-<li><p><code>cache falling back to network</code><br> 先cache 失败了再从network</p>
 </li>
-<li><p><code>network falling back to cache</code><br> network失败了在从cache获取 适用于频繁更新的内容</p>
-</li>
-</ol>
-<ol start="5">
-<li><p><code>cache network race</code><br> 同时从cache和network获取，取最快响应的内容返回，应用场景较少。</p>
-</li>
-<li><p><code>cache ，then next</code><br> 优先从cache，并同时从network获取最新内容，如果内容更新比较新，则更新缓存，并更新页面内容。UX实现难度大</p>
-</li>
-<li><p><code>generic fallback</code><br> 优先从cache获取，如果cache没有则从网络获取，如果网络也不可用就返回cache中默认内容，适用于默认图片之类的场景</p>
-</li>
-</ol>
-<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><blockquote>
-<p>利用<code>navigator.serviceWorker.oncontrollerchange</code>可以监听控制权变化，用来监听sw更新。</p>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//index.html</span></span><br><span class="line">navigator.serviceWorker.oncontrollerchange = <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//监听sw的变化</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;页面已更新&#x27;</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>navigator.online判断当前是否联网。</p>
-</blockquote>
-<blockquote>
-<p>避免http缓存service worker文件。<br>浏览器对service worker文件最多只能缓存24h(超过时间无论如何都会从网络获取)，<br>针对sw的响应头cache-control设置成no-cache，来让浏览器不缓存sw文件。<br>避免缓存跨域资源。<br>一种常见的做法是只缓存满足如下条件的：</p>
-</blockquote>
-<ol>
-<li>响应状态码是200，避免缓存304，404，50x的结果。</li>
-<li>响应类型是basic或cors的，即只缓存同源的，或者正确的跨域请求结果。</li>
-</ol>
-<blockquote>
-<p>注意浏览器的存储空间。</p>
-</blockquote>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;[object Object]&#x27;</span> == &#123;&#125; </span><br><span class="line"><span class="comment">// true, 对象和字符串比较，对象通过 toString 得到一个基本类型值</span></span><br><span class="line"><span class="string">&#x27;1,2,3&#x27;</span> == [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>] </span><br><span class="line"><span class="comment">// true, 同上  [1, 2, 3]通过 toString 得到一个基本类型值</span></span><br></pre></td></tr></table></figure>
+<p>[转换表][<a target="_blank" rel="noopener" href="https://lanhaooss.oss-cn-shenzhen.aliyuncs.com/images/convert-table.png]">https://lanhaooss.oss-cn-shenzhen.aliyuncs.com/images/convert-table.png]</a></p>
 
       
 
@@ -310,14 +238,6 @@
 			 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">serviceWorker</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">PWA</a>
         		</li>
       		
 		</ul>
@@ -373,7 +293,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://lanxisama.github.io/2021/01/27/pwa/what-is-service-work/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://lanxisama.github.io/2021/05/25/js%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -387,18 +307,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2021/03/04/chromeExtension/screenLook-summary/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2021/06/10/css%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD%E6%96%B9%E6%B3%95/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          screenLook 开发总结
+          css垂直居中方法
         
       </div>
     </a>
   
   
-    <a href="/2021/01/26/pwa/pwa/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">缓存策略</div>
+    <a href="/2021/04/02/%E5%89%8D%E7%AB%AF%E9%9F%B3%E4%B9%90%E5%8F%AF%E8%A7%86%E5%8C%96/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">前端音乐可视化</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -425,7 +345,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFServiceWorker"><span class="toc-number">1.</span> <span class="toc-text">什么是ServiceWorker</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B3%A8%E5%86%8C%E6%B5%81%E7%A8%8B%E4%BB%A5%E5%8F%8A%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="toc-number">2.</span> <span class="toc-text">注册流程以及作用域</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BD%9C%E7%94%A8%E5%9F%9F%E6%B1%A1%E6%9F%93"><span class="toc-number">3.</span> <span class="toc-text">作用域污染</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%A6%96%E6%AC%A1%E5%8A%A0%E8%BD%BD-Service-Worker"><span class="toc-number">4.</span> <span class="toc-text">首次加载 Service Worker</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9B%B4%E6%96%B0"><span class="toc-number">5.</span> <span class="toc-text">更新</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Fecth"><span class="toc-number">6.</span> <span class="toc-text">Fecth</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Message"><span class="toc-number">7.</span> <span class="toc-text">Message</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%94%B9%E8%BF%9B"><span class="toc-number">8.</span> <span class="toc-text">改进</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BC%93%E5%AD%98%E7%AD%96%E7%95%A5"><span class="toc-number">9.</span> <span class="toc-text">缓存策略</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%B6%E4%BB%96"><span class="toc-number">10.</span> <span class="toc-text">其他</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#js%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="toc-number">1.</span> <span class="toc-text">js类型转换</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.1.</span> <span class="toc-text">基础类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%B9%E6%AE%8A%E7%9A%84"><span class="toc-number">1.1.1.</span> <span class="toc-text">特殊的</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#instanceof%E5%92%8C%E5%8E%9F%E5%9E%8B%E9%93%BE"><span class="toc-number">1.2.</span> <span class="toc-text">instanceof和原型链</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#js%E4%B8%AD%E7%9A%84%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="toc-number">1.3.</span> <span class="toc-text">js中的类型转换</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97%E7%AC%A6%E4%B8%AD%E7%9A%84%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="toc-number">1.3.1.</span> <span class="toc-text">数学运算符中的类型转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A0%E6%B3%95%E7%9A%84%E7%89%B9%E6%AE%8A%E6%80%A7"><span class="toc-number">1.3.2.</span> <span class="toc-text">加法的特殊性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%BB%E8%BE%91%E5%88%A4%E6%96%AD%E4%B8%AD%E7%9A%84%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="toc-number">1.4.</span> <span class="toc-text">逻辑判断中的类型转换</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E4%B8%AA%E5%8F%98%E9%87%8F"><span class="toc-number">1.4.1.</span> <span class="toc-text">单个变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A4%E6%96%AD%E7%9A%84%E4%BA%94%E6%9D%A1%E8%A7%84%E5%88%99"><span class="toc-number">1.4.2.</span> <span class="toc-text">&#x3D;&#x3D;判断的五条规则</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>

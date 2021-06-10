@@ -71,7 +71,7 @@
 			</ul>
 		</nav>
 		<nav>
-			总文章数 23
+			总文章数 25
 		</nav>
 		<nav class="header-smart-menu">
     		
@@ -164,6 +164,160 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-css垂直居中方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/06/10/css%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD%E6%96%B9%E6%B3%95/">css垂直居中方法</a>
+    </h1>
+  
+
+        
+        <a href="/2021/06/10/css%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD%E6%96%B9%E6%B3%95/" class="archive-article-date">
+  	<time datetime="2021-06-10T10:38:03.160Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-10</time>
+</a>
+        
+      </header>
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="css垂直居中方法"><a href="#css垂直居中方法" class="headerlink" title="css垂直居中方法"></a>css垂直居中方法</h1>
+        
+      
+
+      
+    </div>
+
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">css</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/06/10/css%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD%E6%96%B9%E6%B3%95/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+  
+    <article id="post-js类型转换" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/05/25/js%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/">js类型转换</a>
+    </h1>
+  
+
+        
+        <a href="/2021/05/25/js%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/" class="archive-article-date">
+  	<time datetime="2021-05-25T05:54:19.282Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-25</time>
+</a>
+        
+      </header>
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="js类型转换"><a href="#js类型转换" class="headerlink" title="js类型转换"></a>js类型转换</h1>
+        
+      
+
+      
+    </div>
+
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/05/25/js%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
   
     <article id="post-前端音乐可视化" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -531,7 +685,90 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        //防抖节流
+//函数柯里化
+//promise All
+//合并Promsie
+//async await
+
+//防抖
+function fangdou(fn,del=200){
+    let timer;
+    let that = this;
+    return function(){
+        if(timer){
+            clearTimeout(timer)
+        }
+        timer = setTimeout(()=>{
+            fn.call(that)
+        },del);
+    }
+}
+
+//节流
+function jieliu(fn,del=200){
+    let timer;
+    let last = +new Date();
+    let that = this;
+    return function(){
+        let now = +new Date();
+        if(now - last<200 && timer){
+                clearTimeout(timer)
+                timer = setTimeout(()=>{
+                    fn.call(that);
+                },del)
+        }else{
+            fn.call(that)
+        }
+        last = now;
+    }
+}
+
+//promise All 
+//Promise.all([p1,p2,p3]);
+Promise.myall = function(arr){
+    let resultArr = [];
+    let resultNum = 0;
+    return new Promise(function(resolve,reject){
+        for(let i = 0;i<arr.length;i++){
+            Promise.resolve(arr[i]).then(res=>{
+                resultArr.push(res);
+                resultNum += 1;
+                if(resultNum == arr.length){
+                   return resolve(resultArr);
+                }
+            }).catch(err=>{
+                return reject(err)
+            })
+        }
+    })
+}
+
+function setPromise(){
+    return new Promise((resolve,reject)=>{
+        let random = Math.floor(Math.random()*10);
+        if(random<3){
+            reject(random)
+        }else{
+            resolve(random)
+        }
+    })
+}
+
+Promise.myall([setPromise(),setPromise(),setPromise()]).then(res=>{
+    console.log('resolve',res)
+}).catch((e)=>{
+    console.log('reject',e)
+})
+
+
+let map = new Map()
+map.set('a',1)
+map.set('b',12)
+map.set('e',12)
+console.log([...map])
+
+  
       
 
       
@@ -578,17 +815,38 @@
     <article id="post-奇奇怪怪" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/26/%E5%A5%87%E5%A5%87%E6%80%AA%E6%80%AA/">javascripi用法</a>
+    </h1>
+  
+
+        
+        <a href="/2021/03/26/%E5%A5%87%E5%A5%87%E6%80%AA%E6%80%AA/" class="archive-article-date">
+  	<time datetime="2021-03-26T09:16:15.479Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-26</time>
+</a>
+        
+      </header>
+
+    
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
 <p>排序</p>
 </blockquote>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = [<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">1</span>,<span class="number">4</span>,<span class="number">7</span>]</span><br><span class="line"></span><br><span class="line">a.forEach(<span class="function"><span class="params">n</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">()=&gt;</span><span class="built_in">console</span>.log(n),n)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 由于js异步特性和事件循环的处理方式等，可能有时失灵</span></span><br></pre></td></tr></table></figure>
-
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">封装后</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">testA</span>(<span class="params">a</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> res = [];</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;a&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve,reject</span>)=&gt;</span>&#123;</span><br><span class="line">        a.forEach(<span class="function"><span class="params">n</span>=&gt;</span>&#123;</span><br><span class="line">            <span class="built_in">setTimeout</span>(<span class="function">()=&gt;</span>&#123;</span><br><span class="line">                <span class="comment">//数值最大的 一定最后完成</span></span><br><span class="line">                <span class="keyword">if</span>(n === <span class="built_in">Math</span>.max.apply(<span class="literal">null</span>,a))&#123;</span><br><span class="line">                    resolve(res)</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                res.push(n);</span><br><span class="line">            &#125;,n)</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>var name</p>
 </blockquote>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = 任何值</span><br><span class="line"><span class="keyword">typeof</span> <span class="built_in">window</span>.name (<span class="keyword">typeof</span> name) 都是string</span><br><span class="line"></span><br><span class="line">因为name是<span class="built_in">window</span>上的全局属性</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&#x27;root&#x27;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="built_in">console</span>.log(root) <span class="comment">//可以直接获取dom对象</span></span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>由于浏览器演进的历史原因，创建带有id属性的dom元素时也会在全局创建同名全局变量</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">get</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line"><span class="comment">//这样传入也可以执行 方便传参</span></span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="string">&#x27;get()&#x27;</span>,<span class="number">100</span>)</span><br></pre></td></tr></table></figure>
       
 
       
@@ -597,6 +855,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -680,108 +949,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2021/03/24/Intersection%20Observer%20API/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-
-  
-    <article id="post-搞清clientHeight、offsetHeight、scrollHeight、offsetTop、scrollTop" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>clientHeight、offsetHeight、scrollHeight、offsetTop、scrollTop</p>
-
-      
-
-      
-    </div>
-
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/03/21/%E6%90%9E%E6%B8%85clientHeight%E3%80%81offsetHeight%E3%80%81scrollHeight%E3%80%81offsetTop%E3%80%81scrollTop/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-
-  
-    <article id="post-Vue/computed和watch" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <a id="more"></a>
-
-
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// computed</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">computed</span>(<span class="params">fn</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> runner = effect(fn, &#123;</span><br><span class="line">        lazy: <span class="literal">true</span>,</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        <span class="keyword">get</span> <span class="title">value</span>() &#123;</span><br><span class="line">            <span class="comment">// 执行收集</span></span><br><span class="line">            <span class="keyword">return</span> runner();</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="keyword">set</span> <span class="title">value</span>(<span class="params">value</span>) &#123;&#125;,</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// watch</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">watch</span>(<span class="params">source, cb</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> getter = <span class="function">() =&gt;</span> &#123;&#125;;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> source === <span class="string">&quot;function&quot;</span>) &#123;</span><br><span class="line">        getter = source;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 收集信息</span></span><br><span class="line">    <span class="comment">//依赖的getter变化时 触发scheduler？</span></span><br><span class="line">    <span class="keyword">let</span> runner = effect(getter, &#123;</span><br><span class="line">        lazy: <span class="literal">true</span>,</span><br><span class="line">        scheduler: <span class="function">() =&gt;</span> &#123;</span><br><span class="line">            <span class="comment">// 执行回调</span></span><br><span class="line">            <span class="keyword">let</span> value = runner();</span><br><span class="line">            <span class="keyword">if</span> (value !== oldValue) &#123;</span><br><span class="line">                cb(oldValue, value);</span><br><span class="line">            &#125;</span><br><span class="line">            oldValue = value</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="comment">// 第一次执行收集</span></span><br><span class="line">    <span class="keyword">let</span> oldValue = runner();</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">effect</span>(<span class="params">fn, options = &#123;&#125;</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> effect = createEffect(fn, options);</span><br><span class="line">    <span class="keyword">if</span> (!options.lazy) &#123;</span><br><span class="line">        <span class="comment">// 执行收集</span></span><br><span class="line">        effect();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> effect;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> uid = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> effectStack = [];</span><br><span class="line"><span class="keyword">let</span> activeEffect = <span class="literal">null</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createEffect</span>(<span class="params">fn, options</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> effect = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="comment">//已经收集了</span></span><br><span class="line">        <span class="keyword">if</span> (!effectStack.includes(effect)) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                effectStack.push(effect);</span><br><span class="line">                activeEffect = effect;</span><br><span class="line">                <span class="comment">// 首次执行收集</span></span><br><span class="line">                <span class="keyword">return</span> fn();。</span><br><span class="line">            &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                <span class="comment">// 处理完成</span></span><br><span class="line">                effectStack.pop();</span><br><span class="line">                activeEffect = effectStack[effectStack.length - <span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    effect.raw = fn;</span><br><span class="line">    effect.id = uid++;</span><br><span class="line">    effect.options = options;</span><br><span class="line">    <span class="keyword">return</span> effect;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/03/20/Vue/computed%E5%92%8Cwatch/">展开全文 >></a>
         </p>
       
 

@@ -71,7 +71,7 @@
 			</ul>
 		</nav>
 		<nav>
-			总文章数 23
+			总文章数 25
 		</nav>
 		<nav class="header-smart-menu">
     		
@@ -164,6 +164,108 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-搞清clientHeight、offsetHeight、scrollHeight、offsetTop、scrollTop" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>clientHeight、offsetHeight、scrollHeight、offsetTop、scrollTop</p>
+
+      
+
+      
+    </div>
+
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/21/%E6%90%9E%E6%B8%85clientHeight%E3%80%81offsetHeight%E3%80%81scrollHeight%E3%80%81offsetTop%E3%80%81scrollTop/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+  
+    <article id="post-Vue/computed和watch" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <a id="more"></a>
+
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// computed</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">computed</span>(<span class="params">fn</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> runner = effect(fn, &#123;</span><br><span class="line">        lazy: <span class="literal">true</span>,</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        <span class="keyword">get</span> <span class="title">value</span>() &#123;</span><br><span class="line">            <span class="comment">// 执行收集</span></span><br><span class="line">            <span class="keyword">return</span> runner();</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="keyword">set</span> <span class="title">value</span>(<span class="params">value</span>) &#123;&#125;,</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// watch</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">watch</span>(<span class="params">source, cb</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> getter = <span class="function">() =&gt;</span> &#123;&#125;;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> source === <span class="string">&quot;function&quot;</span>) &#123;</span><br><span class="line">        getter = source;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 收集信息</span></span><br><span class="line">    <span class="comment">//依赖的getter变化时 触发scheduler？</span></span><br><span class="line">    <span class="keyword">let</span> runner = effect(getter, &#123;</span><br><span class="line">        lazy: <span class="literal">true</span>,</span><br><span class="line">        scheduler: <span class="function">() =&gt;</span> &#123;</span><br><span class="line">            <span class="comment">// 执行回调</span></span><br><span class="line">            <span class="keyword">let</span> value = runner();</span><br><span class="line">            <span class="keyword">if</span> (value !== oldValue) &#123;</span><br><span class="line">                cb(oldValue, value);</span><br><span class="line">            &#125;</span><br><span class="line">            oldValue = value</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="comment">// 第一次执行收集</span></span><br><span class="line">    <span class="keyword">let</span> oldValue = runner();</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">effect</span>(<span class="params">fn, options = &#123;&#125;</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> effect = createEffect(fn, options);</span><br><span class="line">    <span class="keyword">if</span> (!options.lazy) &#123;</span><br><span class="line">        <span class="comment">// 执行收集</span></span><br><span class="line">        effect();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> effect;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> uid = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> effectStack = [];</span><br><span class="line"><span class="keyword">let</span> activeEffect = <span class="literal">null</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createEffect</span>(<span class="params">fn, options</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> effect = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="comment">//已经收集了</span></span><br><span class="line">        <span class="keyword">if</span> (!effectStack.includes(effect)) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                effectStack.push(effect);</span><br><span class="line">                activeEffect = effect;</span><br><span class="line">                <span class="comment">// 首次执行收集</span></span><br><span class="line">                <span class="keyword">return</span> fn();。</span><br><span class="line">            &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                <span class="comment">// 处理完成</span></span><br><span class="line">                effectStack.pop();</span><br><span class="line">                activeEffect = effectStack[effectStack.length - <span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    effect.raw = fn;</span><br><span class="line">    effect.id = uid++;</span><br><span class="line">    effect.options = options;</span><br><span class="line">    <span class="keyword">return</span> effect;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/20/Vue/computed%E5%92%8Cwatch/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
   
     <article id="post-Vue/axios" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -875,163 +977,6 @@ showSkeleton()</code></pre>
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2021/01/25/css-filter/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-
-  
-    <article id="post-photo/photo" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/01/24/photo/photo/">放了个相册</a>
-    </h1>
-  
-
-        
-        <a href="/2021/01/24/photo/photo/" class="archive-article-date">
-  	<time datetime="2021-01-24T12:27:35.759Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-24</time>
-</a>
-        
-      </header>
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <iframe width ='980' height ='410' src ='https://mars.nasa.gov/layout/embed/send-your-name/future/certificate/?cn=33605206430' frameborder ='0'></iframe>
-      
-
-      
-    </div>
-
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">photo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/01/24/photo/photo/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-
-  
-    <article id="post-chromeExtension/chrome-extension-screen-record" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/01/24/chromeExtension/chrome-extension-screen-record/">实现一个录屏chrome插件</a>
-    </h1>
-  
-
-        
-        <a href="/2021/01/24/chromeExtension/chrome-extension-screen-record/" class="archive-article-date">
-  	<time datetime="2021-01-24T07:14:45.139Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-24</time>
-</a>
-        
-      </header>
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">const</span> mediaDevices = navigator.mediaDevices;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-        
-      
-
-      
-    </div>
-
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Chrome extension</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/01/24/chromeExtension/chrome-extension-screen-record/">展开全文 >></a>
         </p>
       
 
