@@ -2,14 +2,28 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://lanxisama.github.io/2021/05/25/js%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/</loc>
+    <loc>https://lanxisama.github.io/2021/09/01/hall%20sentry%20vue%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/</loc>
     
-    <lastmod>2021-06-10</lastmod>
+    <lastmod>2021-09-01</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://lanxisama.github.io/2021/04/02/%E5%89%8D%E7%AB%AF%E9%9F%B3%E4%B9%90%E5%8F%AF%E8%A7%86%E5%8C%96/</loc>
+    
+    <lastmod>2021-09-01</lastmod>
     
   </url>
   
   <url>
     <loc>https://lanxisama.github.io/2021/06/10/css%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD%E6%96%B9%E6%B3%95/</loc>
+    
+    <lastmod>2021-06-11</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://lanxisama.github.io/2021/05/25/js%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/</loc>
     
     <lastmod>2021-06-10</lastmod>
     
@@ -54,13 +68,6 @@
     <loc>https://lanxisama.github.io/2021/01/26/pwa/pwa/</loc>
     
     <lastmod>2021-04-03</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://lanxisama.github.io/2021/04/02/%E5%89%8D%E7%AB%AF%E9%9F%B3%E4%B9%90%E5%8F%AF%E8%A7%86%E5%8C%96/</loc>
-    
-    <lastmod>2021-04-02</lastmod>
     
   </url>
   
@@ -172,7 +179,7 @@
 
   <url>
     <loc>https://lanxisama.github.io/</loc>
-    <lastmod>2021-06-10</lastmod>
+    <lastmod>2021-09-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -180,70 +187,77 @@
   
   <url>
     <loc>https://lanxisama.github.io/tags/JavaScript/</loc>
-    <lastmod>2021-06-10</lastmod>
+    <lastmod>2021-09-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://lanxisama.github.io/tags/css/</loc>
-    <lastmod>2021-06-10</lastmod>
+    <lastmod>2021-09-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://lanxisama.github.io/tags/axios/</loc>
-    <lastmod>2021-06-10</lastmod>
+    <lastmod>2021-09-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://lanxisama.github.io/tags/Javascript/</loc>
-    <lastmod>2021-06-10</lastmod>
+    <lastmod>2021-09-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://lanxisama.github.io/tags/Vue/</loc>
-    <lastmod>2021-06-10</lastmod>
+    <lastmod>2021-09-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://lanxisama.github.io/tags/Chrome-extension/</loc>
-    <lastmod>2021-06-10</lastmod>
+    <lastmod>2021-09-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://lanxisama.github.io/tags/photo/</loc>
-    <lastmod>2021-06-10</lastmod>
+    <lastmod>2021-09-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://lanxisama.github.io/tags/serviceWorker/</loc>
-    <lastmod>2021-06-10</lastmod>
+    <lastmod>2021-09-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://lanxisama.github.io/tags/PWA/</loc>
-    <lastmod>2021-06-10</lastmod>
+    <lastmod>2021-09-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://lanxisama.github.io/tags/translate/</loc>
-    <lastmod>2021-06-10</lastmod>
+    <lastmod>2021-09-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://lanxisama.github.io/tags/Sentry/</loc>
+    <lastmod>2021-09-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>

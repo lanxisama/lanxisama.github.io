@@ -71,7 +71,7 @@
 			</ul>
 		</nav>
 		<nav>
-			总文章数 25
+			总文章数 26
 		</nav>
 		<nav class="header-smart-menu">
     		
@@ -164,6 +164,87 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-hall sentry vue插件开发" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/09/01/hall%20sentry%20vue%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/">hall sentry vue插件开发</a>
+    </h1>
+  
+
+        
+        <a href="/2021/09/01/hall%20sentry%20vue%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/" class="archive-article-date">
+  	<time datetime="2021-09-01T01:59:33.515Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-01</time>
+</a>
+        
+      </header>
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="hall-sentry-vue插件开发"><a href="#hall-sentry-vue插件开发" class="headerlink" title="hall sentry vue插件开发"></a>hall sentry vue插件开发</h1>
+        
+      
+
+      
+    </div>
+
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Sentry</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/09/01/hall%20sentry%20vue%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
   
     <article id="post-css垂直居中方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -340,36 +421,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <a id="more"></a>
-
-
-<h2 id="AudioContext-获取音频数据"><a href="#AudioContext-获取音频数据" class="headerlink" title="AudioContext 获取音频数据"></a>AudioContext 获取音频数据</h2><blockquote>
-<p>Web Audio是web短处理和分析音频的API，可以设置不同的音频来源（包括<code>&lt;audio&gt;</code>节点，ArrayBuffer，用户设备等），对音频添加音效，生成可视化图形等。</p>
-</blockquote>
-<h3 id="Web-Audio在可视化中的作用"><a href="#Web-Audio在可视化中的作用" class="headerlink" title="Web Audio在可视化中的作用"></a>Web Audio在可视化中的作用</h3><blockquote>
-<p>播放音频，获取frequencyData，根据这个绘制图形。</p>
-</blockquote>
-<h3 id="1-创建AudioContext"><a href="#1-创建AudioContext" class="headerlink" title="1.创建AudioContext"></a>1.创建AudioContext</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> AudioContext = <span class="built_in">window</span>.AudioContext || <span class="built_in">window</span>.webKitAudioContext;</span><br><span class="line"><span class="keyword">const</span> ctx = <span class="keyword">new</span> AudioContext();</span><br></pre></td></tr></table></figure>
-<h3 id="2-创建AnalyserNode"><a href="#2-创建AnalyserNode" class="headerlink" title="2.创建AnalyserNode"></a>2.创建AnalyserNode</h3><blockquote>
-<p>用于获取音频数据包括频率数据和时域数据</p>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> analyser = ctx.createAnalyser();</span><br><span class="line">analyser.fftSize = <span class="number">512</span>; <span class="comment">//这个参数是一个快速傅里叶参数 值为2的幂次方，数字越大结果越精确</span></span><br><span class="line"><span class="comment">//这个值决定了频率数据的长度</span></span><br></pre></td></tr></table></figure>
-<h3 id="3-设置SourceNode"><a href="#3-设置SourceNode" class="headerlink" title="3.设置SourceNode"></a>3.设置SourceNode</h3><blockquote>
-<p>把音频节点关联到AudioContext上。<br>Web Audio种有三种类型源</p>
-</blockquote>
-<ul>
-<li>MediaElementAudioSourceNode 允许将<code>&lt;audio&gt;</code>节点直接作为输入，可做到流式播放。</li>
-<li>AudioBufferSourceNode 通过 xhr 预先将音频文件加载下来，再用 AudioContext 进行解码。</li>
-<li>MediaStreamAudioSourceNode 可以将用户的麦克风作为输入。即通过navigator.getUserMedia获取用户的音频或视频流后，生成音频源。</li>
-</ul>
-<h3 id="4-播放音频"><a href="#4-播放音频" class="headerlink" title="4.播放音频"></a>4.播放音频</h3><p>MediaElementAudioSourceNode 直接使用Play方法播放<br>AudioBufferSourceNode 需要调用start(0)播放</p>
-<h3 id="5。获取频率"><a href="#5。获取频率" class="headerlink" title="5。获取频率"></a>5。获取频率</h3><ol>
-<li>analyser.getByteFrequencyData 返回的是0-255的Uint8Array</li>
-<li>analyser.getFloatFrequencyData 返回的是0-22050的Float32Array</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> bufferLength = analyser.frequencyBinCount;</span><br><span class="line"><span class="keyword">const</span> dataArray = <span class="keyword">new</span> <span class="built_in">Uint8Array</span>(bufferLength);</span><br><span class="line"></span><br><span class="line">analyser.getByteFrequencyData(dataArray); <span class="comment">//对已有数组赋值，不返回新数组</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Canvas根据音频数据绘制"><a href="#Canvas根据音频数据绘制" class="headerlink" title="Canvas根据音频数据绘制"></a>Canvas根据音频数据绘制</h2>
+        <h1 id="前端音乐可视化"><a href="#前端音乐可视化" class="headerlink" title="前端音乐可视化"></a>前端音乐可视化</h1>
+        
       
 
       
@@ -901,84 +954,6 @@ console.log([...map])
 
 
   
-    <article id="post-Intersection Observer API" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/03/24/Intersection%20Observer%20API/">IntersectionObserver API(交叉观察器)</a>
-    </h1>
-  
-
-        
-        <a href="/2021/03/24/Intersection%20Observer%20API/" class="archive-article-date">
-  	<time datetime="2021-03-24T07:17:51.071Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-24</time>
-</a>
-        
-      </header>
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> io = <span class="keyword">new</span> IntersectionObserver(callback,option);</span><br><span class="line"><span class="comment">//callback是可见性变化时执行的回调函数，option是配置对象。</span></span><br></pre></td></tr></table></figure>
-<p>构造函数返回一个观察器实例。调用实例的observe方法可以指定观察哪个DOM节点。</p>
-        
-      
-
-      
-    </div>
-
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Javascript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/03/24/Intersection%20Observer%20API/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1128,6 +1103,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">translate</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Sentry</a>
               </li>
             
             <div class="clearfix"></div>
